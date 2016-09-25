@@ -1,5 +1,5 @@
 #Application Structure
-
+```sh
 imports/
   startup/
     client/
@@ -34,3 +34,4 @@ server/
   main.js                      # server entry point, imports all server code
 
 ref. https://guide.meteor.com/structure.html
+```
