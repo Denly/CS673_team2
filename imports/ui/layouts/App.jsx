@@ -13,6 +13,7 @@ export default class App extends Component {
         <header>
           <h1>Header</h1>
             <ul className="header">
+              <li><Link to="Landing">Landing</Link></li>
               <li><Link to="Gallery">Gallery</Link></li>
               <li><Link to="Message">Message</Link></li>
               <li><Link to="Profile">My Profile</Link></li>
