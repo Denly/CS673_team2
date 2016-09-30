@@ -5,7 +5,7 @@
 **[Application File Structure](#application-file-structure)**  
 
 ## Design Guide
-**[Material Design Document](http://materializecss.com/)**
+**[Material Design Document](http://materializecss.com/)**  
 **[Material Design Guide](https://material.google.com/)**   
 **[Prototype in mobile browser](http://adobe.ly/2cFoq2a)**   
 
@@ -35,8 +35,8 @@ Base & Header/
 
 Landing Page/
   Client/
-    Sign_in -button        # Call New_User_Profile
-    layouts -img,text      # introduction, pure static text and img
+    Sign_in -button       # Call New_User_Profile
+    layouts -img,text     # introduction, pure static text and img
     Tests                 #
   Server/
     User_Collection       # Define User database
