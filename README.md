@@ -1,8 +1,8 @@
 ### Table of Contents
-**[Road Map and Mile Stone](#Road-Map-and-Mile-Stone)**  
-**[Design Guide](#Design-Guide)**  
-**[Work Break Down Structure-basic tasks](#Work-Break-Down-Structure-basic-tasks)**  
-**[Application File Structure](#Application-File-Structure)**  
+**[Road Map and Mile Stone](#road-map-and-mile-stone)**  
+**[Design Guide](#design-guide)**  
+**[Work Break Down Structure-basic tasks](#work-break-down-structure-basic-tasks)**  
+**[Application File Structure](#application-file-structure)**  
 
 ## Design Guide
 **[Material Design Document](http://materializecss.com/)**
