@@ -1,4 +1,15 @@
-# Road Map and Mile Stone
+### Table of Contents
+**[Road Map and Mile Stone](#Road-Map-and-Mile-Stone)**  
+**[Design Guide](#Design-Guide)**  
+**[Work Break Down Structure-basic tasks](#Work-Break-Down-Structure-basic-tasks)**  
+**[Application File Structure](#Application-File-Structure)**  
+
+## Design Guide
+**[Material Design Document](http://materializecss.com/)**
+**[Material Design Guide](https://material.google.com/)**   
+**[Prototype in mobile browser](http://adobe.ly/2cFoq2a)**   
+
+## Road Map and Mile Stone
 1. Iteration 1
   0. Finish Landing Page, Profile Page, and Discover page.  
   1. User Sign_in by FB.  
@@ -14,7 +25,7 @@
   0. Finish Searching by location, matching people, and extra features.
 
 
-# Work Break Down Structure - basic tasks
+## Work Break Down Structure-basic tasks
 ```sh
 Base & Header/
   Client/
@@ -74,7 +85,7 @@ Message Page/
 
 ```
 
-# Application File Structure
+## Application File Structure
 ```sh
 imports/
   startup/
