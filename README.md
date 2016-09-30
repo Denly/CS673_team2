@@ -40,7 +40,7 @@ Landing Page/
     Tests                 #
   Server/
     User_Collection       # Define User database
-    New_User -api_method # Create new user and profile by FB info, Call GetFacebook_info
+    New_User -api_method  # Create new user and profile by FB info, Call GetFacebook_info
     GetFacebook_info -private_method  # return FB information and user photo
     Tests                 #
 
