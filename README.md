@@ -1,13 +1,8 @@
-### Table of Contents
+## Table of Contents
 **[Road Map and Mile Stone](#road-map-and-mile-stone)**  
 **[Design Guide](#design-guide)**  
 **[Work Break Down Structure-basic tasks](#work-break-down-structure-basic-tasks)**  
 **[Application File Structure](#application-file-structure)**  
-
-## Design Guide
-**[Material Design Document](http://materializecss.com/)**  
-**[Material Design Guide](https://material.google.com/)**   
-**[Prototype in mobile browser](http://adobe.ly/2cFoq2a)**   
 
 ## Road Map and Mile Stone
 1. Iteration 1
@@ -23,6 +18,11 @@
 
 3. Iteration 3
   0. Finish Searching by location, matching people, and extra features.
+
+## Design Guide
+  **[Material Design Document](http://materializecss.com/)**  
+  **[Material Design Guide](https://material.google.com/)**   
+  **[Prototype in mobile browser](http://adobe.ly/2cFoq2a)**   
 
 
 ## Work Break Down Structure-basic tasks
@@ -81,8 +81,7 @@ Message Page/
     Publish_Message       #
     Publish_Message_Room  #
     Tests                 #
-
-
+    
 ```
 
 ## Application File Structure
