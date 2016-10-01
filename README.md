@@ -81,7 +81,7 @@ Message Page/
     Publish_Message       #
     Publish_Message_Room  #
     Tests                 #
-    
+
 ```
 
 ## Application File Structure
@@ -98,7 +98,7 @@ imports/
 
   api/
     <feature>/                 # a unit of domain logic,
-                               # that're gallery, message, profile, landing_page
+                               # that're Discover, message, profile, landing_page
       server/
         publications.js        # all list-related publications
         publications.tests.js  # tests for the list publications

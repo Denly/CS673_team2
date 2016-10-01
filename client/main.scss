@@ -6,3 +6,10 @@
 @import "{poetic:materialize-scss}/sass/materialize.scss";
 
 /* Universial SCSS declarations go here */
+.brand-logo {
+  margin: 0 10px 0 10px;
+}
+.brand-logo img{
+  height: 28px;
+  margin-right: 10px;
+}

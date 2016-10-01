@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
-export default class Gallery extends Component {
+export default class Discover extends Component {
    render() {
       return (
          <div>
-            <h1>Gallery Page</h1>
+            <h1>Discover Page</h1>
          </div>
       )
    }
