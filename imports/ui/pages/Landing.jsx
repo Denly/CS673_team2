@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Blaze from 'meteor/gadicc:blaze-react-component';
 
-
 export default class Landing extends Component {
   logout(){
     AccountsTemplates.logout();
