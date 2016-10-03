@@ -1,18 +1,26 @@
 import React, { Component, PropTypes } from 'react';
-import ReactDOM from 'react-dom'
 import ProfileCard from '../components/profile_card.jsx';
 import { createContainer } from 'meteor/react-meteor-data';
 
 export default class Discover extends Component {
+  renderProfileCardList() {
+
+    return this.props.users.map((user) => {
+      return (
+        <ProfileCard
+        key = {user._id}
+        facebookID = {user.services.facebook.id}
+        size = {""}
+        />
+      );
+    });
+  }
+
   render() {
     return (
       <div>
         <h1>Discover Page</h1>
-        <ProfileCard
-          key = {"1234"}
-          facebookID = {"699173800246359"}
-          size = {""}
-          />
+        {this.renderProfileCardList()}
       </div>
     )
   }
