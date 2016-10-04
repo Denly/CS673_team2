@@ -4,7 +4,10 @@ import { Router, Route, Link, browserHistory, IndexRoute  } from 'react-router'
 // App component - represents the whole app
 export default class App extends Component {
   componentDidMount() {
+    //materialize button-collapse inital
     $(".button-collapse").sideNav();
+
+    //FB inital
     window.fbAsyncInit = function() {
       FB.init({
         appId      : '303809510001753',
