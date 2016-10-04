@@ -6,11 +6,11 @@ export default class Discover extends Component {
   renderProfileCardList() {
 
     return this.props.users.map((user) => {
+      console.log(user);
       return (
         <ProfileCard
         key = {user._id}
-        facebookID = {user.services.facebook.id}
-        size = {""}
+        imgSrc = {user.imgSrc}
         />
       );
     });
@@ -31,7 +31,11 @@ export default createContainer(() => {
   Meteor.subscribe('discoverUsers');
 
   return {
-    users: Meteor.users.find({}).fetch(),
+    users: Meteor.users.find({}).fetch().map((user) => {
+      return ({_id: user._id,
+      imgSrc: "https://graph.facebook.com/v2.7/" + user.services.facebook.id + "/picture?fields=picture&height=300&width=300&redirect=true",
+    });
+    }),
     currentUser: Meteor.user(),
   };
 }, Discover);
