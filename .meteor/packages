@@ -28,3 +28,4 @@ useraccounts:core
 useraccounts:materialize
 gadicc:blaze-react-component
 react-meteor-data
+aldeed:simple-schema
