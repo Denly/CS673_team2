@@ -1,3 +1,5 @@
+import { Mongo } from 'meteor/mongo';
+
 MessageRooms = new Mongo.Collection('MessageRooms');
 
 MessageRooms.schema = new SimpleSchema({

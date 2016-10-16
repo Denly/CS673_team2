@@ -1,3 +1,5 @@
+import { Mongo } from 'meteor/mongo';
+
 Messages = new Mongo.Collection('Messages');
 // By default optional is false, all keys are required.
 Messages.schema = new SimpleSchema({

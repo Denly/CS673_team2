@@ -1,5 +1,6 @@
-//An Image class that takes a document in its constructor
+import { Mongo } from 'meteor/mongo';
 
+//An Image class that takes a document in its constructor
 Image = function (doc) {
   _.extend(this, doc);
 };
