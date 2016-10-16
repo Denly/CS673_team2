@@ -1,10 +1,6 @@
-Meteor.publish("discoverUsers", function () {
-  return Meteor.users.find({}, {fields: {profile: 1, services: 1}});
-});
-
 profile = new SimpleSchema({
   name: {type: String},
-  age: {type: Number, defaultValue: 0},
+  age: {type: Number, optional: true},
   intro: {type: String, optional: true},
 });
 
