@@ -29,3 +29,5 @@ useraccounts:materialize
 gadicc:blaze-react-component
 react-meteor-data
 aldeed:simple-schema
+practicalmeteor:mocha
+dburles:factory

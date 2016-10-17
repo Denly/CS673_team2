@@ -20,6 +20,7 @@ caching-html-compiler@1.0.7
 callback-hook@1.0.9
 check@1.2.3
 coffeescript@1.0.17
+dburles:factory@1.1.0
 ddp@1.2.5
 ddp-client@1.2.9
 ddp-common@1.2.6
@@ -65,6 +66,11 @@ oauth2@1.1.10
 observe-sequence@1.0.12
 ordered-dict@1.0.8
 poetic:materialize-scss@1.97.6_1
+practicalmeteor:chai@2.1.0_1
+practicalmeteor:loglevel@1.2.0_2
+practicalmeteor:mocha@2.4.5_6
+practicalmeteor:mocha-core@1.0.1
+practicalmeteor:sinon@1.14.1_2
 promise@0.8.7
 random@1.0.10
 rate-limit@1.0.5
@@ -87,6 +93,7 @@ templating-compiler@1.2.15
 templating-runtime@1.2.15
 templating-tools@1.0.5
 tmeasday:check-npm-versions@0.2.0
+tmeasday:test-reporter-helpers@0.2.1
 tracker@1.1.0
 ui@1.0.12
 underscore@1.0.9
