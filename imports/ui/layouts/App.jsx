@@ -73,25 +73,43 @@ export default class App extends Component {
         </div>
         
         <a href="#" data-activates="slide-out" className="message-room"></a>
-        <ul id="slide-out" className="side-nav">
-            <li><div className="userView">
-            <a className="waves-effect" href="#!">
-                <span>Username</span> <span> MessageRoom</span>
+        <ul id="slide-out" className="side-nav collection">
+            
+            <a className="collection-item avatar waves-effect">
+            <img src="images/yuna.jpg" alt="" className="circle"/>
+            <span className="title">Name</span>
+            <p>Message...</p>
+            <span href="#!" className="secondary-content">
+                <i className="material-icons">grade</i>
+            </span>
             </a>
-            </div>
-            </li>
-            <li><div className="userView">
-            <a className="waves-effect" href="#!">
-                <span>Username</span> <span> MessageRoom</span>
+                
+            <a className="collection-item avatar waves-effect">
+            <img src="images/yuna.jpg" alt="" className="circle"/>
+            <span className="title">Name</span>
+            <p>Message...</p>
+            <span href="#!" className="secondary-content">
+                <i className="material-icons">grade</i>
+            </span>
             </a>
-            </div>
-            </li>
-            <li><div className="userView">
-            <a className="waves-effect" href="#!">
-                <span>Username</span> <span> MessageRoom</span>
+            
+            <a className="collection-item avatar waves-effect">
+            <img src="images/yuna.jpg" alt="" className="circle"/>
+            <span className="title">Name</span>
+            <p>Message...</p>
+            <span href="#!" className="secondary-content">
+                <i className="material-icons">grade</i>
+            </span>
             </a>
-            </div>
-            </li>
+                
+            <a className="collection-item avatar waves-effect">
+            <img src="images/yuna.jpg" alt="" className="circle"/>
+            <span className="title">Name</span>
+            <p>Message...</p>
+            <span href="#!" className="secondary-content">
+                <i className="material-icons">grade</i>
+            </span>
+            </a>
         </ul>
 
         <div className="container">
