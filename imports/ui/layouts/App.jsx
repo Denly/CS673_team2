@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Router, Route, Link, browserHistory, IndexRoute  } from 'react-router'
+import Parallax from '../components/parallax.jsx';
 
 // App component - represents the whole app
 export default class App extends Component {
@@ -14,7 +15,7 @@ export default class App extends Component {
       edge: 'right',  // Choose the horizontal origin
     }
     );
-      
+
     //FB inital
     window.fbAsyncInit = function() {
       FB.init({
@@ -32,7 +33,7 @@ export default class App extends Component {
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
   }
-    
+
   //pop out message room
     popMessageRoom(){
     $('.message-room').sideNav('show');
@@ -45,7 +46,7 @@ export default class App extends Component {
           <div className="nav-wrapper">
             <a href="#!" className="brand-logo"><img src="/logo_s.svg"/>MeetCute</a>
             <a href="#" data-activates="mobile-demo" className="button-collapse"><i className="material-icons">menu</i></a>
-        
+
             <ul className="right hide-on-med-and-down">
               <li><Link to="Landing#">Landing</Link></li>
               <li><Link to="Discover">Discover</Link></li>
@@ -56,11 +57,11 @@ export default class App extends Component {
               <li><Link to="Profile">My Profile</Link></li>
               <li><Link to="Document">Document</Link></li>
             </ul>
-              
+
             <ul className="side-nav" id="mobile-demo">
               <li><Link to="Landing#">Landing</Link></li>
               <li><Link to="Discover">Discover</Link></li>
-              <li><Link 
+              <li><Link
                 to="Message"
                 onClick={this.popMessageRoom.bind(this)}
                 >Message</Link></li>
@@ -71,7 +72,7 @@ export default class App extends Component {
         </nav>
         <div>
         </div>
-        
+
         <a href="#" data-activates="slide-out" className="message-room"></a>
         <ul id="slide-out" className="side-nav">
             <li><div className="userView">
@@ -93,6 +94,8 @@ export default class App extends Component {
             </div>
             </li>
         </ul>
+        {console.log(this.props.location.pathname)}
+        {this.props.location.pathname == '/Landing' ? <Parallax/> : ''}
 
         <div className="container">
           {this.props.children}
