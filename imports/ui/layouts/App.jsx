@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Router, Route, Link, browserHistory, IndexRoute  } from 'react-router'
-
+import MessageRoomsPopout from '../components/message_rooms_popout.jsx';
 // App component - represents the whole app
 export default class App extends Component {
   componentDidMount() {
@@ -9,12 +9,7 @@ export default class App extends Component {
       closeOnClick: true // Closes side-nav on <a> clicks
     }
     );
-    $('.message-room').sideNav({
-      menuWidth: 300, // Default is 240
-      edge: 'right',  // Choose the horizontal origin
-    }
-    );
-      
+
     //FB inital
     window.fbAsyncInit = function() {
       FB.init({
@@ -32,10 +27,10 @@ export default class App extends Component {
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
   }
-    
+
   //pop out message room
     popMessageRoom(){
-    $('.message-room').sideNav('show');
+    $('#slide-out').sideNav('show');
   }
 
   render() {
@@ -45,7 +40,7 @@ export default class App extends Component {
           <div className="nav-wrapper">
             <a href="#!" className="brand-logo"><img src="/logo_s.svg"/>MeetCute</a>
             <a href="#" data-activates="mobile-demo" className="button-collapse"><i className="material-icons">menu</i></a>
-        
+
             <ul className="right hide-on-med-and-down">
               <li><Link to="Landing#">Landing</Link></li>
               <li><Link to="Discover">Discover</Link></li>
@@ -56,11 +51,11 @@ export default class App extends Component {
               <li><Link to="Profile">My Profile</Link></li>
               <li><Link to="Document">Document</Link></li>
             </ul>
-              
+
             <ul className="side-nav" id="mobile-demo">
               <li><Link to="Landing#">Landing</Link></li>
               <li><Link to="Discover">Discover</Link></li>
-              <li><Link 
+              <li><Link
                 to="Message"
                 onClick={this.popMessageRoom.bind(this)}
                 >Message</Link></li>
@@ -71,46 +66,8 @@ export default class App extends Component {
         </nav>
         <div>
         </div>
-        
-        <a href="#" data-activates="slide-out" className="message-room"></a>
-        <ul id="slide-out" className="side-nav collection">
-            
-            <a className="collection-item avatar waves-effect">
-            <img src="images/yuna.jpg" alt="" className="circle"/>
-            <span className="title">Name</span>
-            <p>Message...</p>
-            <span href="#!" className="secondary-content">
-                <i className="material-icons">grade</i>
-            </span>
-            </a>
-                
-            <a className="collection-item avatar waves-effect">
-            <img src="images/yuna.jpg" alt="" className="circle"/>
-            <span className="title">Name</span>
-            <p>Message...</p>
-            <span href="#!" className="secondary-content">
-                <i className="material-icons">grade</i>
-            </span>
-            </a>
-            
-            <a className="collection-item avatar waves-effect">
-            <img src="images/yuna.jpg" alt="" className="circle"/>
-            <span className="title">Name</span>
-            <p>Message...</p>
-            <span href="#!" className="secondary-content">
-                <i className="material-icons">grade</i>
-            </span>
-            </a>
-                
-            <a className="collection-item avatar waves-effect">
-            <img src="images/yuna.jpg" alt="" className="circle"/>
-            <span className="title">Name</span>
-            <p>Message...</p>
-            <span href="#!" className="secondary-content">
-                <i className="material-icons">grade</i>
-            </span>
-            </a>
-        </ul>
+
+        <MessageRoomsPopout/>
 
         <div className="container">
           {this.props.children}
