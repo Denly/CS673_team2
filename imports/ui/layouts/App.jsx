@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { Router, Route, Link, browserHistory, IndexRoute  } from 'react-router'
-
+import MessageRoomsPopout from '../components/message_rooms_popout.jsx';
 // App component - represents the whole app
 export default class App extends Component {
   componentDidMount() {
-    //materialize button-collapse inital
-    $(".button-collapse").sideNav();
+    //materialize sideNav inital
+    $(".button-collapse").sideNav({
+      closeOnClick: true // Closes side-nav on <a> clicks
+    }
+    );
 
     //FB inital
     window.fbAsyncInit = function() {
@@ -25,6 +28,11 @@ export default class App extends Component {
     }(document, 'script', 'facebook-jssdk'));
   }
 
+  //pop out message room
+    popMessageRoom(){
+    $('#slide-out').sideNav('show');
+  }
+
   render() {
     return (
       <div className="">
@@ -32,23 +40,34 @@ export default class App extends Component {
           <div className="nav-wrapper">
             <a href="#!" className="brand-logo"><img src="/logo_s.svg"/>MeetCute</a>
             <a href="#" data-activates="mobile-demo" className="button-collapse"><i className="material-icons">menu</i></a>
+
             <ul className="right hide-on-med-and-down">
               <li><Link to="Landing#">Landing</Link></li>
               <li><Link to="Discover">Discover</Link></li>
-              <li><Link to="Message">Message</Link></li>
+              <li><Link
+                to="Message"
+                onClick={this.popMessageRoom.bind(this)}
+                >Message</Link></li>
               <li><Link to="Profile">My Profile</Link></li>
               <li><Link to="Document">Document</Link></li>
             </ul>
+
             <ul className="side-nav" id="mobile-demo">
               <li><Link to="Landing#">Landing</Link></li>
               <li><Link to="Discover">Discover</Link></li>
-              <li><Link to="Message">Message</Link></li>
+              <li><Link
+                to="Message"
+                onClick={this.popMessageRoom.bind(this)}
+                >Message</Link></li>
               <li><Link to="Profile">My Profile</Link></li>
               <li><Link to="Document">Document</Link></li>
             </ul>
           </div>
         </nav>
+        <div>
+        </div>
 
+        <MessageRoomsPopout/>
 
         <div className="container">
           {this.props.children}
