@@ -1,19 +1,16 @@
 import React, { Component, PropTypes } from 'react';
 import ProfileCard from '../components/profile_card.jsx';
-import { createContainer } from 'meteor/react-meteor-data';
+//import { createContainer } from 'meteor/react-meteor-data';
 
 export default class Discover extends Component {
   renderProfileCardList() {
 
-    return this.props.users.map((user) => {
-      console.log(user);
+    //return this.props.users.map((user) => {
+      //console.log(user);
       return (
-        <ProfileCard
-        key = {user._id}
-        imgSrc = {user.imgSrc}
-        />
+        <ProfileCard/>
       );
-    });
+    //});
   }
 
   render() {
@@ -26,7 +23,10 @@ export default class Discover extends Component {
   }
 }
 
-//mapping json array to dom formate, put Collection to this.props
+//need to rewrite this to NOT user current user and instead use
+//test users from database
+
+/*//mapping json array to dom formate, put Collection to this.props
 export default createContainer(() => {
   Meteor.subscribe('discoverUsers');
 
@@ -39,3 +39,4 @@ export default createContainer(() => {
     currentUser: Meteor.user(),
   };
 }, Discover);
+*/
