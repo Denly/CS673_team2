@@ -1,18 +1,12 @@
 import React, { Component } from 'react';
 import { Router, Route, Link, browserHistory, IndexRoute  } from 'react-router'
-import Parallax from '../components/parallax.jsx';
-
+import MessageRoomsPopout from '../components/message_rooms_popout.jsx';
 // App component - represents the whole app
 export default class App extends Component {
   componentDidMount() {
     //materialize sideNav inital
     $(".button-collapse").sideNav({
       closeOnClick: true // Closes side-nav on <a> clicks
-    }
-    );
-    $('.message-room').sideNav({
-      menuWidth: 300, // Default is 240
-      edge: 'right',  // Choose the horizontal origin
     }
     );
 
@@ -36,7 +30,7 @@ export default class App extends Component {
 
   //pop out message room
     popMessageRoom(){
-    $('.message-room').sideNav('show');
+    $('#slide-out').sideNav('show');
   }
 
   render() {
@@ -73,33 +67,12 @@ export default class App extends Component {
         <div>
         </div>
 
-        <a href="#" data-activates="slide-out" className="message-room"></a>
-        <ul id="slide-out" className="side-nav">
-            <li><div className="userView">
-            <a className="waves-effect" href="#!">
-                <span>Username</span> <span> MessageRoom</span>
-            </a>
-            </div>
-            </li>
-            <li><div className="userView">
-            <a className="waves-effect" href="#!">
-                <span>Username</span> <span> MessageRoom</span>
-            </a>
-            </div>
-            </li>
-            <li><div className="userView">
-            <a className="waves-effect" href="#!">
-                <span>Username</span> <span> MessageRoom</span>
-            </a>
-            </div>
-            </li>
-        </ul>
+        <MessageRoomsPopout/>
         {console.log(this.props.location.pathname)}
-        {this.props.location.pathname == '/Landing' ? <Parallax/> : ''}
+        {console.log(this.props.location.pathname.includes('Landing'))}
+        {this.props.location.pathname.includes('Landing') ? this.props.children : <div className="container">{this.props.children}</div>}
 
-        <div className="container">
-          {this.props.children}
-        </div>
+
       </div>
     );
   }
