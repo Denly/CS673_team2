@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
+/*Message profile card or message user card or something - iank*/
+
 export default class MessageRoomCard extends Component {
   render() {
     return (
