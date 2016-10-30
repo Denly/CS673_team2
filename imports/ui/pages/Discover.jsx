@@ -9,9 +9,9 @@ export default class Discover extends Component {
       //console.log(user);
       return (
         <ProfileCard
-         key = {user._id}
-         imgSrc = {user.imgSrc}
-         />
+          key = {user._id}
+          imgSrc = {user.imgSrc}
+          />
 
       );
     });
@@ -31,15 +31,15 @@ export default class Discover extends Component {
 //test users from database
 
 //mapping json array to dom formate, put Collection to this.props
-export default createContainer(() => {
-  Meteor.subscribe('discoverUsers');
 
-  return {
-    users: Meteor.users.find({}).fetch().map((user) => {
-      return ({_id: user._id,
+export default createContainer(({ params }) => {
+  const subscription = Meteor.subscribe('discoverUsers');
+  const loading = !subscription.ready();
+  const users = Meteor.users.find().fetch().map((user) => {
+    return ({_id: user._id,
       imgSrc: "https://graph.facebook.com/v2.7/" + user.services.facebook.id + "/picture?fields=picture&height=300&width=300&redirect=true",
     });
-    }),
-    currentUser: Meteor.user(),
-  };
+  });
+
+  return { loading, users };
 }, Discover);
