@@ -17,11 +17,13 @@ class Profile extends Component {
   }
 }
 
-setTimeout(function(){
-  export default createContainer(() => {
-    return {
-      _id: Meteor.user()._id,
-      imgSrc: "https://graph.facebook.com/v2.7/" + Meteor.user().services.facebook.id + "/picture?fields=picture&height=960&width=960&redirect=true",
-    };
-  }, Profile);
-}, 5);
+export default createContainer(() => {
+  return {
+   user: Meteor.users.find({}).fetch().map((user) => {
+    return ({_id: user._id,
+    imgSrc: "https://graph.facebook.com/v2.7/" + user.services.facebook.id + "/picture?fields=picture&height=960&width=960&redirect=true",
+  });
+  }),
+  currentUser: Meteor.user(),
+};
+}, Profile);

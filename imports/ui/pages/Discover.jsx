@@ -7,11 +7,12 @@ export default class Discover extends Component {
 
     return this.props.users.map((user) => {
       console.log(user);
-      return (
-        <ProfileCard
-          key = {user._id}
-          imgSrc = {user.imgSrc} />
-      );
+      if (user._id != Meteor.user()._id)
+        {return (
+              <ProfileCard
+                key = {user._id}
+                imgSrc = {user.imgSrc} />
+            );}
     });
   }
 
