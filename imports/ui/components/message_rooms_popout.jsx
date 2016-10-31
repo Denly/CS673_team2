@@ -11,7 +11,7 @@ export default class MessageRoomsPopout extends Component {
     }
     );
   }
-  
+
   render() {
     return (
       <ul id="slide-out" data-activates="slide-out" className="side-nav collection">
