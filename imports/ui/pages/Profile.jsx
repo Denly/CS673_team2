@@ -3,7 +3,7 @@ import ProfileCard from '../components/profile_card.jsx';
 import { createContainer } from 'meteor/react-meteor-data';
 
 
-export default class Profile extends Component {
+class Profile extends Component {
  renderProfileCard() {
 
     return this.props.users.map((user) => {
