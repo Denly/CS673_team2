@@ -6,8 +6,9 @@ import { Images } from '/imports/api/image/images.js';
 
 
 
-const _clientSendMessage = function(){
+const _clientSendMessage = function( text, toUserId ){
   console.log('_clientSendMessage');
+  Messages.insert({text: text})
 }
 
 const _clientEditProfile = function(){
