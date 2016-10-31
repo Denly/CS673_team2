@@ -25,7 +25,7 @@ _.extend(Image.prototype, {
 });
 
 // Define a Collection Images that uses Image as its document
-Images = new Mongo.Collection("Images", {
+export const Images = new Mongo.Collection("Images", {
   transform: function (doc) { return new Image(doc); }
 });
 

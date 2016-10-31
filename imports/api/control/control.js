@@ -6,10 +6,17 @@ import { Images } from '/imports/api/image/images.js';
 
 
 
-const _clientSendMessage = function( text, toUserId ){
-  console.log('_clientSendMessage');
-  Messages.insert({text: text})
+const _clientSendMessage = function( toUserId, text ){
+  id = Meteor.user().id
+
+  Messages.insert({
+    fromId:id,
+    toUserId: toUserId,
+    text: text,
+    })
 }
+
+
 
 const _clientEditProfile = function(){
   console.log('_clientEditProfile');

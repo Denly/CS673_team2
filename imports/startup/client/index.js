@@ -5,3 +5,10 @@ import { Control } from '/imports/api/control/control.js';
 
 //put Controllers in gobal namespace
 Controllers = Control;
+
+//Model in gobal namespace
+Models = {
+  Images: Images,
+  Messages: Messages,
+  MessageRooms: MessageRooms,
+};
