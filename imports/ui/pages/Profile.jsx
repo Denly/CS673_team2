@@ -4,9 +4,7 @@ import { createContainer } from 'meteor/react-meteor-data';
 
 
 class Profile extends Component {
-
   renderProfileCard() {
-
     return this.props.users.map((user) => {
       console.log(user);
       if (user._id == Meteor.user()._id) //super hacky, needs refactor
