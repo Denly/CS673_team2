@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import MessageRoomCard from '../components/message_room_card.jsx';
+import MessageText from '../components/message_text.jsx';
 import { createContainer } from 'meteor/react-meteor-data';
-
+import { Messages } from '/imports/api/message/messages.js';
 
 export default class Message extends Component {
   render() {
@@ -10,6 +10,13 @@ export default class Message extends Component {
 
         <h1><img width="150" height="150" src={'img_not_find.jpg'}alt="" className="circle"/> Name</h1>
         <ul className="collection">
+          
+          {this.props.messages.map((m) => (
+            < MessageText {...m}
+            key = {m._id}
+            />
+          ))}
+
           {/*right msg*/}
           <li className="collection-item avatar right-align">
             <span className="title">{'date'}</span>
@@ -37,9 +44,8 @@ export default class Message extends Component {
 }
 
 export default createContainer(() => {
+  console.log(Messages);
+  console.log(Messages.find().fetch());
 
-
-  return {
-
-  };
+  return {messages: Messages.find().fetch()};
 }, Message);
