@@ -6,11 +6,11 @@ import { Messages } from '/imports/api/message/messages.js';
 export default class Message extends Component {
   render() {
     return (
-      <div>
+      <div className="msg_page_container">
 
-        <h1><img width="150" height="150" src={'img_not_find.jpg'}alt="" className="circle"/> Name</h1>
+        <h1><img width="50" height="50" src={'img_not_find.jpg'}alt="" className="circle"/> Name</h1>
         <ul className="collection">
-          
+
           {this.props.messages.map((m) => (
             < MessageText {...m}
             key = {m._id}
@@ -30,7 +30,7 @@ export default class Message extends Component {
         </li>
 
       </ul>
-      <div className="row">
+      <div className="row msg_input_div">
           <div className="input-field col s10">
             <textarea id="textarea1" className="materialize-textarea"></textarea>
             </div>

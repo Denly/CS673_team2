@@ -17,3 +17,21 @@
   font-size: 50px;
   color: #fad6e6;
 }
+
+.msg_page_container {
+    height: 100%;
+    position: fixed;
+    width: 100%;
+    overflow: hidden;
+    left: 0px;
+    padding: 0 10% 0 10%;
+
+    .collection {
+      overflow: scroll;
+      height: 40%;
+    }
+
+    .msg_input_div{
+
+    }
+}
