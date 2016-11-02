@@ -15,7 +15,6 @@ describe('MessageRoomCard', () => {
     };
 
     const MRC = shallow(<MessageRoomCard {...msgRoom} />);
-    //console.log(MRC.html());
     chai.assert(MRC.text().includes(msgRoom.message));
     chai.assert(MRC.text().includes(msgRoom.name));
     chai.assert(MRC.text().includes(msgRoom.date));
