@@ -1,6 +1,6 @@
 import { Mongo } from 'meteor/mongo';
 
-export const Messages = new Mongo.Collection('Messages');
+export const Messages = new Mongo.Collection('messages');
 // By default optional is false, all keys are required.
 Messages.schema = new SimpleSchema({
   text: {type: String, optional: true},
