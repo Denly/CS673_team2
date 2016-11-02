@@ -6,7 +6,6 @@ export default class Discover extends Component {
   renderDiscoverCardList() {
 
     return this.props.users.map((user) => {
-      console.log(user);
       if (user._id != Meteor.user()._id)  //super hacky, needs refactor
         {return (
               <ProfileCard
