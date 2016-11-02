@@ -2,7 +2,6 @@
 // @import "{poetic:materialize-scss}/sass/components/_color.scss";
 // $primary-color: color("blue", "lighten-2");
 
-// import main scss file
 @import "{poetic:materialize-scss}/sass/materialize.scss";
 
 /* Universial SCSS declarations go here */
@@ -12,4 +11,9 @@
 .brand-logo img{
   height: 28px;
   margin-right: 10px;
+}
+
+.input-field.col.s2 i {
+  font-size: 50px;
+  color: #fad6e6;
 }
