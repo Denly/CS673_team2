@@ -2,16 +2,16 @@ import React, { Component, PropTypes } from 'react';
 import MessageRoomCard from '../components/message_room_card.jsx';
 import { createContainer } from 'meteor/react-meteor-data';
 
-export default class MessageRoomsPopout extends Component {
+class MessageRoomsPopout extends Component {
   componentDidMount() {
-    //message_rooms_popout
+    //set up slide-out for message_rooms_popout
     $('#slide-out').sideNav({
       menuWidth: 300, // Default is 240
       edge: 'right',  // Choose the horizontal origin
     }
     );
   }
-  
+
   render() {
     return (
       <ul id="slide-out" data-activates="slide-out" className="side-nav collection">
