@@ -1,4 +1,4 @@
-// If you want to override materialize sass variables you can uncomment the following:
+   // If you want to override materialize sass variables you can uncomment the following:
 // @import "{poetic:materialize-scss}/sass/components/_color.scss";
 // $primary-color: color("blue", "lighten-2");
 
@@ -12,4 +12,7 @@
 .brand-logo img{
   height: 28px;
   margin-right: 10px;
+}
+.brand-discoverImage img{
+  height: 100px;
 }
