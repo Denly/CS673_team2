@@ -13,9 +13,12 @@ describe('MessageRoomCard', () => {
       name: 'name',
       date: '3/9 2017',
     };
+
     const MRC = shallow(<MessageRoomCard {...msgRoom} />);
+    //console.log(MRC.html());
     chai.assert(MRC.text().includes(msgRoom.message));
     chai.assert(MRC.text().includes(msgRoom.name));
     chai.assert(MRC.text().includes(msgRoom.date));
+    chai.assert(MRC.html().includes(msgRoom.imgSrc));
   });
 });
