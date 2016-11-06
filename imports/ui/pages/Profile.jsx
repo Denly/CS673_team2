@@ -11,7 +11,8 @@ class Profile extends Component {
           return (
               <ProfileCard
                 key = {user._id}
-                imgSrc = {user.imgSrc} />
+                imgSrc = {user.imgSrc} 
+                name = {user.name} />
             );
         }
     });
@@ -34,6 +35,7 @@ export default createContainer(() => {
   return {
     users: Meteor.users.find({}).fetch().map((user) => {
       return ({_id: user._id,
+      name: user.profile.name,
       imgSrc: "https://graph.facebook.com/v2.7/" + user.services.facebook.id + "/picture?fields=picture&height=960&width=960&redirect=true",
     });
     })

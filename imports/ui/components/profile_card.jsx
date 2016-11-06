@@ -8,8 +8,7 @@ export default class ProfileCard extends Component {
           <img src= {this.props.imgSrc ? this.props.imgSrc : "img_not_find.jpg"} />
         </div>
         <div className="card-content profile-name">
-          <span className="card-title grey-text text-darken-4">User Name<i className="material-icons right">more_vert</i></span>
-          <p><a href="#">Edit Profile</a></p>
+          <span className="card-title grey-text text-darken-4">{this.props.name}</span>
         </div>
         <div className="card-content profile-intro">
           Hello! I've never made an online dating profile before so I don't know what to write!
