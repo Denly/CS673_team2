@@ -21,7 +21,7 @@ class Profile extends Component {
   render() {
     return (
       <div>
-        <h1>Profile Page</h1>
+        <h1>My Profile</h1>
         {this.renderProfileCard()}
       </div>
     )
