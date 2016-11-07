@@ -18,20 +18,28 @@ export default class Message extends Component {
   }
 
   handleSubmit(event) {
-    this.props.clientSendMessage('id', this.state.value);
-    setTimeout(this.scrollBottom, 10)
+    var value = this.state.value.trim()
 
+    if (this.state.value.trim() == ''){
+      console.log('input value cannot be null');
+      return null;
+    }
+
+    if (event.key === 'Enter' || event.key === undefined) {
+      this.props.clientSendMessage('this.props.params.userId', value);
+      this.setState({value: ''});
+      setTimeout(this.scrollBottom, 10)
+    }
   }
 
   scrollBottom() {
     var objDiv = document.getElementById("msg_context_id");
     objDiv.scrollTop = objDiv.scrollHeight;
-    console.log(objDiv.scrollTop);
   }
 
   render() {
-    console.log('this.props.params');
-    console.log(this.props.params);
+    //console.log('this.props.params');
+    //console.log(this.props.params.userId);
     return (
       <div className="msg_page_container">
 
@@ -44,34 +52,23 @@ export default class Message extends Component {
             />
         ))}
 
-        {/*
-        <li className="collection-item avatar right-align">
-          <span className="title">{'date'}</span>
-          <p>{'message'}</p>
-
-        </li>
-        <li className="collection-item avatar">
-          <img src={'img_not_find.jpg'}alt="" className="circle"/>
-          <span className="title">{'date'}</span>
-          <p>{'message'}</p>
-        </li>*/}
-
       </ul>
+
       <div className="row msg_input_div">
         <div className="input-field col s10">
           <textarea
             value={this.state.value}
             onChange={this.handleChange}
+            onKeyPress={this.handleSubmit}
             className="materialize-textarea"></textarea>
         </div>
         <div className="input-field col s2">
           <a onClick={this.handleSubmit} className="btn-floating btn-large waves-effect waves-light"><i className="material-icons">send</i></a>
-
         </div>
       </div>
-    </div>
-  )
-}
+      </div>
+    )
+  }
 }
 
 export default createContainer(() => {
@@ -79,7 +76,10 @@ export default createContainer(() => {
   //console.log(Messages.find().fetch());
 
   return {
-    messages: Messages.find().fetch(),
+    messages: Messages.find().fetch().map((m) => {
+      m.isOwner = (m.fromUserId == Meteor.userId()) ? true : false;
+      return m;
+    }),
     clientSendMessage: Control.clientSendMessage //function(){console.log('yo hii')},
   };
 }, Message);

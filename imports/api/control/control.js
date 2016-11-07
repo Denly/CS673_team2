@@ -7,10 +7,9 @@ import { Images } from '/imports/api/image/images.js';
 
 
 const _clientSendMessage = function( toUserId, text ){
-  id = Meteor.user()._id
 
   Messages.insert({
-    fromId:id,
+    fromUserId: Meteor.userId(),
     toUserId: toUserId,
     text: text,
     })
