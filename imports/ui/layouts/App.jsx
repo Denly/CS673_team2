@@ -7,8 +7,14 @@ export default class App extends Component {
     //materialize sideNav inital
     $(".button-collapse").sideNav({
       closeOnClick: true // Closes side-nav on <a> clicks
-    }
-    );
+    });
+
+    //set up slide-out for message_rooms_popout
+    $('#slide-out-trigger').sideNav({
+      menuWidth: 300, // Default is 240
+      edge: 'right',  // Choose the horizontal origin
+      closeOnClick: true, // Closes side-nav on <a> clicks
+    });
 
     //FB inital
     window.fbAsyncInit = function() {
@@ -30,7 +36,7 @@ export default class App extends Component {
 
   //pop out message room
     popMessageRoom(){
-    $('#slide-out').sideNav('show');
+    $('#slide-out-trigger').sideNav('show');
   }
 
   render() {
@@ -40,6 +46,7 @@ export default class App extends Component {
           <div className="nav-wrapper">
             <a href="#!" className="brand-logo"><img src="/logo_s.svg"/>MeetCute</a>
             <a href="#" data-activates="mobile-demo" className="button-collapse"><i className="material-icons">menu</i></a>
+            <a href="#" data-activates="slide-out" id="slide-out-trigger"></a>
 
             <ul className="right hide-on-med-and-down">
               <li><Link to="/Landing">Landing</Link></li>
