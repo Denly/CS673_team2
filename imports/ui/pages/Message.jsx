@@ -4,7 +4,7 @@ import { createContainer } from 'meteor/react-meteor-data';
 import { Messages } from '/imports/api/message/messages.js';
 import { Control } from '/imports/api/control/control.js';
 
-export default class Message extends Component {
+class Message extends Component {
   constructor(props){
     super(props);
     this.state = {value: ''};
@@ -38,8 +38,9 @@ export default class Message extends Component {
   }
 
   render() {
-    //console.log('this.props.params');
-    //console.log(this.props.params.userId);
+    console.log('this.props.params');
+    console.log(this.props.params);
+    console.log(this.state.params);
     return (
       <div className="msg_page_container">
 

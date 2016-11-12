@@ -10,3 +10,22 @@ MessageRooms.schema = new SimpleSchema({
   createdAt: {type: Date},
   updatedAt:{type: Date},
 });
+
+if(Meteor.server){
+  MessageRooms._ensureIndex({fromUserId: 1, toUserId: -1}, {unique: true});
+}
+
+MessageRooms.allow({
+  insert: function (userId, doc) {
+    // the user must be logged in, and the document must be owned by the user
+    return true;
+  },
+  update: function (userId, doc, fields, modifier) {
+    // can only change your own documents
+    return true;
+  },
+  remove: function (userId, doc) {
+    // can only remove your own documents
+    return false;
+  },
+});

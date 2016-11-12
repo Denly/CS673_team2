@@ -8,11 +8,40 @@ import { Images } from '/imports/api/image/images.js';
 
 const _clientSendMessage = function( toUserId, text ){
 
-  Messages.insert({
+  var MsgId =  Messages.insert({
     fromUserId: Meteor.userId(),
     toUserId: toUserId,
     text: text,
-    })
+  });
+
+  if(!MsgId){
+    console.error('insert msg failed');
+    return 0;
+  }
+
+  var msgRoom = MessageRooms.findOne({fromUserId: Meteor.userId(), toUserId: toUserId});
+  if( msgRoom ) {
+      var MsgRoomSuccess = MessageRooms.update(msgRoom._id,
+      {$set: {text: text}}
+    );
+  }else{
+    var MsgRoomSuccess = MessageRooms.insert({
+      fromUserId: Meteor.userId(),
+      toUserId: toUserId,
+      text: text,
+    });
+  }
+
+  if(!MsgRoomSuccess){
+    console.error('insert msgRoom failed');
+    Messages.remove(MsgId); // roll back, kind of
+    return 0;
+  }
+
+  if(MsgId && MsgRoomSuccess){
+    console.log('MsgId:',MsgId, ', MsgRoomSuccess:',MsgRoomSuccess )
+  }
+
 }
 
 

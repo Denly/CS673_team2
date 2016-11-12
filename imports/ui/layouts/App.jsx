@@ -42,25 +42,23 @@ export default class App extends Component {
             <a href="#" data-activates="mobile-demo" className="button-collapse"><i className="material-icons">menu</i></a>
 
             <ul className="right hide-on-med-and-down">
-              <li><Link to="Landing#">Landing</Link></li>
-              <li><Link to="Discover">Discover</Link></li>
-              <li><Link
-                to="Message"
+              <li><Link to="/Landing">Landing</Link></li>
+              <li><Link to="/Discover">Discover</Link></li>
+              <li><a
                 onClick={this.popMessageRoom.bind(this)}
-                >Message</Link></li>
-              <li><Link to="Profile">My Profile</Link></li>
-              <li><Link to="Document">Document</Link></li>
+                >Message</a></li>
+              <li><Link to="/Profile">My Profile</Link></li>
+              <li><Link to="/Document">Document</Link></li>
             </ul>
 
             <ul className="side-nav" id="mobile-demo">
-              <li><Link to="Landing#">Landing</Link></li>
-              <li><Link to="Discover">Discover</Link></li>
-              <li><Link
-                to="Message"
+              <li><Link to="/Landing">Landing</Link></li>
+              <li><Link to="/Discover">Discover</Link></li>
+              <li><a
                 onClick={this.popMessageRoom.bind(this)}
-                >Message</Link></li>
-              <li><Link to="Profile">My Profile</Link></li>
-              <li><Link to="Document">Document</Link></li>
+                >Message</a></li>
+              <li><Link to="/Profile">My Profile</Link></li>
+              <li><Link to="/Document">Document</Link></li>
             </ul>
           </div>
         </nav>
