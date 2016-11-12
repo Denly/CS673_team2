@@ -44,7 +44,7 @@ class Message extends Component {
     return (
       <div className="msg_page_container">
 
-        <h1><img width="50" height="50" src={'img_not_find.jpg'}alt="" className="circle"/> Name</h1>
+        <h1><img width="50" height="50" src={'/img_not_find.jpg'}alt="" className="circle"/> Name</h1>
         <ul className="collection" id="msg_context_id">
 
           {this.props.messages.map((m) => (
@@ -57,6 +57,7 @@ class Message extends Component {
 
       <div className="row msg_input_div">
         <div className="input-field col s10">
+
           <textarea
             value={this.state.value}
             onChange={this.handleChange}

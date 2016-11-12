@@ -12,6 +12,7 @@ const _clientSendMessage = function( toUserId, text ){
     fromUserId: Meteor.userId(),
     toUserId: toUserId,
     text: text,
+    createdAt: Date(),
   });
 
   if(!MsgId){
@@ -22,13 +23,14 @@ const _clientSendMessage = function( toUserId, text ){
   var msgRoom = MessageRooms.findOne({fromUserId: Meteor.userId(), toUserId: toUserId});
   if( msgRoom ) {
       var MsgRoomSuccess = MessageRooms.update(msgRoom._id,
-      {$set: {text: text}}
+      {$set: {text: text, updatedAt: Date()}}
     );
   }else{
     var MsgRoomSuccess = MessageRooms.insert({
       fromUserId: Meteor.userId(),
       toUserId: toUserId,
       text: text,
+      createdAt: Date(),
     });
   }
 
@@ -43,8 +45,6 @@ const _clientSendMessage = function( toUserId, text ){
   }
 
 }
-
-
 
 const _clientEditProfile = function(){
   console.log('_clientEditProfile');
