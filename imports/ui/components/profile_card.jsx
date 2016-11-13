@@ -1,6 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-//import ProfileIntro from '../components/profile_intro.jsx'; 
-
 
 export default class ProfileCard extends Component {
   constructor(props) {
@@ -25,12 +23,17 @@ export default class ProfileCard extends Component {
     return (
       <div className="card profile-photo">
         <div className="card-image waves-effect waves-block waves-light">
-          <img src= {this.props.imgSrc ? this.props.imgSrc : "img_not_find.jpg"} />
+          <img class="responsive-img" src= {this.props.imgSrc ? this.props.imgSrc : "img_not_find.jpg"} />
         </div>
+
         <div className="card-content profile-name">
-          <span className="card-title grey-text text-darken-4">{this.props.name}</span>
+          <label>Name</label>
+          <div>
+            <span className="card-title grey-text text-darken-4">{this.props.name}</span>
+          </div>
         </div>
         <div className="card-content profile-intro">
+          <label>Self Introduction</label>
           <textarea
             value={this.state.value}
             onChange={this.handleChange}

@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import ProfileCard from '../components/profile_card.jsx';
 import { createContainer } from 'meteor/react-meteor-data';
 import { Control } from '/imports/api/control/control.js';
-//import ProfileIntro from '../components/profile_intro.jsx'; 
-
 
 class Profile extends Component {
 

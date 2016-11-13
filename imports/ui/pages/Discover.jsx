@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import ProfileCard from '../components/profile_card.jsx';
+import DiscoverCard from '../components/discover_card.jsx';
 import { createContainer } from 'meteor/react-meteor-data';
 
 export default class Discover extends Component {
@@ -8,7 +8,7 @@ export default class Discover extends Component {
     return this.props.users.map((user) => {
       if (user._id != Meteor.user()._id)  //super hacky, needs refactor
         {return (
-              <ProfileCard
+              <DiscoverCard
                 key = {user._id}
                 imgSrc = {user.imgSrc}
                 name = {user.name} />

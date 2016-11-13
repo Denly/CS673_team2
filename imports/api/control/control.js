@@ -57,6 +57,7 @@ const _clientEditProfile = function(text){
   Meteor.users.update(userId, {
     $set: {profile: user.profile}
   });
+  console.log("intro update successful. New intro: " + text)
 }
 
 export const Control = {
