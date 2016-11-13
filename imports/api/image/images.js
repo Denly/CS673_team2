@@ -1,13 +1,16 @@
 import { Mongo } from 'meteor/mongo';
 
-//An Image class that takes a document in its constructor
+/**
+ * An Image class that takes a document in its constructor
+ *
+ */
 Image = function (doc) {
   _.extend(this, doc);
 };
 
 _.extend(Image.prototype, {
   url: function () {
-    //** generate url here**//
+    //generate url here
     var url = "";
     switch (this.service) {
       case "filepicker":
@@ -29,6 +32,10 @@ export const Images = new Mongo.Collection("Images", {
   transform: function (doc) { return new Image(doc); }
 });
 
+/**
+ * Schema object for images
+ *
+ */
 Images.schema = new SimpleSchema({
   userId: {type: String, regEx: SimpleSchema.RegEx.Id},
   serviceId: {type: String},

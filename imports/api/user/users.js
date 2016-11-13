@@ -1,3 +1,7 @@
+/**
+ * Schema for user profile
+ *
+ */
 profile = new SimpleSchema({
   name: {type: String},
   age: {type: Number, optional: true},

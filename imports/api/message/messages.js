@@ -1,7 +1,10 @@
 import { Mongo } from 'meteor/mongo';
 
 export const Messages = new Mongo.Collection('Messages');
-// By default optional is false, all keys are required.
+/**
+ * Schema for messages exchanged between two users.
+ * By default optional is false, all keys are required.
+ */
 Messages.schema = new SimpleSchema({
   text: {type: String, optional: true},
   fromUserId: {type: String, regEx: SimpleSchema.RegEx.Id},

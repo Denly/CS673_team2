@@ -2,6 +2,10 @@ import React, { Component, PropTypes } from 'react';
 import MessageRoomCard from '../components/message_room_card.jsx';
 import { createContainer } from 'meteor/react-meteor-data';
 
+/**
+ * Class object for pop-out messages list.
+ *
+ */
 class MessageRoomsPopout extends Component {
   componentDidMount() {
     //set up slide-out for message_rooms_popout
