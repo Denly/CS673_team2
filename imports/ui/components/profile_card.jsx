@@ -1,18 +1,45 @@
 import React, { Component, PropTypes } from 'react';
 
 export default class ProfileCard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {value : this.props.intro};
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+
+  handleSubmit(event) {
+    var value = this.state.value.trim()
+    if (event.key === 'Enter' || event.key === undefined) {
+      this.setState({value: value});
+      this.props.clientEditProfile(value);
+    }
+  }
+
   render() {
     return (
       <div className="card profile-photo">
         <div className="card-image waves-effect waves-block waves-light">
-          <img src= {this.props.imgSrc ? this.props.imgSrc : "img_not_find.jpg"} />
+          <img class="responsive-img" src= {this.props.imgSrc ? this.props.imgSrc : "img_not_find.jpg"} />
         </div>
+
         <div className="card-content profile-name">
-          <span className="card-title grey-text text-darken-4">User Name<i className="material-icons right">more_vert</i></span>
-          <p><a href="#">Edit Profile</a></p>
+          <label>Name</label>
+          <div>
+            <span className="card-title grey-text text-darken-4">{this.props.name}</span>
+          </div>
         </div>
         <div className="card-content profile-intro">
-          Hello! I've never made an online dating profile before so I don't know what to write!
+          <label>Self Introduction</label>
+          <textarea
+            value={this.state.value}
+            onChange={this.handleChange}
+            onKeyPress={this.handleSubmit}
+            className="materialize-textarea">
+          </textarea>
         </div>
       </div>
     )

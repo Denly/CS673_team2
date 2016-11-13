@@ -1,17 +1,20 @@
 import React, { Component, PropTypes } from 'react';
+import { Router, Route, Link, browserHistory, IndexRoute  } from 'react-router';
 
 export default class MessageRoomCard extends Component {
   render() {
     return (
-          <a className="collection-item avatar waves-effect">
+
+          <Link to={'/Message/'+'hiii'} className="collection-item avatar waves-effect">
           <img src={this.props.imgSrc} alt="" className="circle"/>
           <span className="title">{this.props.name}</span>
           <p>{this.props.message}<br/>{this.props.date}
           </p>
-          <span href="#!" className="secondary-content">
+          <span className="secondary-content">
               <i className="material-icons">grade</i>
           </span>
-          </a>
+          </Link>
+
     )
   }
 }

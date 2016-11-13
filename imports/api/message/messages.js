@@ -1,6 +1,7 @@
 import { Mongo } from 'meteor/mongo';
 
 export const Messages = new Mongo.Collection('Messages');
+
 /**
  * Schema for messages exchanged between two users.
  * By default optional is false, all keys are required.
@@ -20,10 +21,10 @@ Messages.allow({
   },
   update: function (userId, doc, fields, modifier) {
     // can only change your own documents
-    return true;
+    return false;
   },
   remove: function (userId, doc) {
     // can only remove your own documents
-    return true;
+    return false;
   },
 });
