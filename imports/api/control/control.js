@@ -16,10 +16,13 @@ const _clientSendMessage = function( toUserId, text ){
     })
 }
 
-
-
-const _clientEditProfile = function(){
-  console.log('_clientEditProfile');
+const _clientEditProfile = function(text){
+  user = Meteor.user();
+  userId = Meteor.user()._id;
+  user.profile.intro = text;
+  Meteor.users.update(userId, {
+    $set: {profile: user.profile}
+  });
 }
 
 export const Control = {
