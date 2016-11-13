@@ -67,6 +67,10 @@ const _clientGetLatestMsg = function(toUserId){
 
 /**
  * API for editing user's profile on front-end
+ * @param {string} text - Text input as the new profile description
+ * @example
+ * _clientEditProfile("I am an edited piece of text!!");
+ *
  */
 const _clientEditProfile = function(text){
   user = Meteor.user();
@@ -80,10 +84,24 @@ const _clientEditProfile = function(text){
 
 // new id 114254839052603
 // daniel's id 699173800246359
-const _serverNewUser = function(facebookId){
+
+nameDefault = "John Doe";
+introDefault = "Hi there! I'm looking to meet new people!"
+
+introTemp = introDefault;
+nameTemp = nameDefault;
+/** 
+ * API for inserting a new user to `Users` collection, using facebook id as the argument.
+ * @param {string} facebookId - Unique facebook ID of the new user being created.
+ * @param {string} nameTemp - Name of the user
+ * @param {string} introTemp - Brief intro/summary of the user or their self-description
+ * @example
+ * _serverNewUser("699173800246359", "Daniel Shih", "Hi there! I'm looking to meet new people!");
+ */
+const _serverNewUser = function(facebookId, nameTemp, introTemp){
 	Meteor.users.insert(
 	{
-		profile: {name: 'xx', intro: 'intro'},
+		profile: {name: nameTemp, intro: introTemp},
 		services: {facebook: {id : facebookId}}
 	}
 		);
