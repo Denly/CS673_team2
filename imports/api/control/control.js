@@ -22,7 +22,19 @@ const _clientEditProfile = function(){
   console.log('_clientEditProfile');
 }
 
+// new id 114254839052603
+// daniel's id 699173800246359
+const _serverNewUser = function(facebookId){
+	Meteor.users.insert(
+	{
+		profile: {name: 'xx', intro: 'intro'},
+		services: {facebook: {id : facebookId}}
+	}
+		);
+}
+
 export const Control = {
   clientSendMessage: _clientSendMessage,
   clientEditProfile: _clientEditProfile,
+  serverNewUser: _serverNewUser,
 }
