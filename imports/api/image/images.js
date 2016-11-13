@@ -1,8 +1,10 @@
 import { Mongo } from 'meteor/mongo';
 
 /**
- * An Image class that takes a document in its constructor
- *
+ * 
+ * Class that takes a document in its constructor and stores it the database as the user's display image.
+ * 
+ * @param {file} doc - The document to be stored in the database as the user's display image.
  */
 Image = function (doc) {
   _.extend(this, doc);
@@ -34,7 +36,6 @@ export const Images = new Mongo.Collection("Images", {
 
 /**
  * Schema object for images
- *
  */
 Images.schema = new SimpleSchema({
   userId: {type: String, regEx: SimpleSchema.RegEx.Id},

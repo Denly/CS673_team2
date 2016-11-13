@@ -3,10 +3,14 @@ import { MessageRooms } from '/imports/api/message/messageRooms.js';
 import { Images } from '/imports/api/image/images.js';
 import { Control } from '/imports/api/control/control.js';
 
-//put Controllers in gobal namespace
+/**
+ * @description Puts controllers in gobal namespace 
+ */
 Controllers = Control;
 
-//Model in gobal namespace
+/**
+ * @description Model in gobal namespace 
+ */
 Models = {
   Images: Images,
   Messages: Messages,

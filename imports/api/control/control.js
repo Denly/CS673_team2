@@ -10,6 +10,8 @@ import { Images } from '/imports/api/image/images.js';
  *
  * @param {string} toUserId - The unique ID of the recipient of the message
  * @param {string} text - The message to be sent to the recipient
+ * @example <caption>Example usage of method _clientSendMessage.</caption>
+ * _clientSendMessage("fivE7HyBekduoKe67", "Hello! How are you today?");
  */
 const _clientSendMessage = function( toUserId, text ){
   id = Meteor.user()._id
