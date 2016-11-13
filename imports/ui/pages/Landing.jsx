@@ -12,8 +12,9 @@ export default class Landing extends Component {
       <div>
         <h1>Landing Page</h1>
         <Blaze template="atForm" />
+        {Meteor.user() == null ? '' :
         <a className="waves-effect waves-light btn" onClick={this.logout}><i className="material-icons left">power_settings_new</i>Logout</a>
-
+        }
       </div>
     )
   }
