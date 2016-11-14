@@ -85,11 +85,6 @@ const _clientEditProfile = function(text){
 // new id 114254839052603
 // daniel's id 699173800246359
 
-nameDefault = "John Doe";
-introDefault = "Hi there! I'm looking to meet new people!"
-
-introTemp = introDefault;
-nameTemp = nameDefault;
 /** 
  * API for inserting a new user to `Users` collection, using facebook id as the argument.
  * @param {string} facebookId - Unique facebook ID of the new user being created.
@@ -105,6 +100,7 @@ const _serverNewUser = function(facebookId, nameTemp, introTemp){
 		services: {facebook: {id : facebookId}}
 	}
 		);
+	console.log("Insertion successful" + nameTemp);
 }
 
 export const Control = {
