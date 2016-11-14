@@ -1,4 +1,8 @@
 import { Control } from '/imports/api/control/control.js';
+
+var nameDefault = "John Doe";
+var introDefault = "Hi there! I'm looking to meet new people!"
+
 var minimumUserSize = 7;
 var currentUserCount = Meteor.users.find().count();
 var storedUserIds = Meteor.users.find().fetch().map((user) => {return user.services.facebook.id});
@@ -12,7 +16,7 @@ if (currentUserCount < minimumUserSize)
  		{
 			if (!storedUserIds.includes(testIds[i]))
 			{
-				Control.serverNewUser(testIds[i]);
+				Control.serverNewUser(testIds[i],nameDefault,introDefault);
 			}
 		}
 }
