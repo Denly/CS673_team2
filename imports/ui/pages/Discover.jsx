@@ -7,12 +7,12 @@ export default class Discover extends Component {
 
     return this.props.users.map((user) => {
       if (user._id != Meteor.user()._id)  //super hacky, needs refactor
-        {return (
-              <DiscoverCard
-                key = {user._id}
-                imgSrc = {user.imgSrc}
-                name = {user.name} />
-            );}
+      {return (
+        <DiscoverCard
+          key = {user._id}
+          imgSrc = {user.imgSrc}
+          name = {user.name} />
+      );}
     });
   }
 
@@ -20,7 +20,9 @@ export default class Discover extends Component {
     return (
       <div>
         <h1>Discover</h1>
-        {this.renderDiscoverCardList()}
+        <div className="row">
+          {this.renderDiscoverCardList()}
+        </div>
       </div>
     )
   }
