@@ -33,8 +33,9 @@ export default class ProfileCard extends Component {
           </div>
         </div>
         <div className="card-content profile-intro">
-          <label>Self Introduction</label>
+          <label>Self Introduction (click below to edit)</label>
           <textarea
+            placeholder="Enter a brief summary of yourself here, press enter to publish"
             value={this.state.value}
             onChange={this.handleChange}
             onKeyPress={this.handleSubmit}
