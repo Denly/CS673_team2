@@ -27,6 +27,7 @@ describe('MessageRoomPopout', () => {
   chai.assert(MRC.html().includes(msgRoom.message));
   chai.assert(MRC.html().includes(msgRoom.name));
   chai.assert(MRC.html().includes(msgRoom.date));
+
   chai.assert(MRC.html().includes(msgRoom1.id));
 	chai.assert(MRC.html().includes(msgRoom1.message));
   chai.assert(MRC.html().includes(msgRoom1.name));
