@@ -21,14 +21,16 @@ describe('MessageRoomPopout', () => {
       date: '4/9 2017',
     };
 	const msgRooms = [msgRoom, msgRoom1]
-    	const MRC = shallow(<MessageRoomPopout messageRooms = {msgRooms} />);
+  const MRC = shallow(<MessageRoomPopout messageRooms = {msgRooms} />);
   chai.assert(MRC.html().includes(msgRoom.id));
-    	chai.assert(MRC.html().includes(msgRoom.message));
-   	chai.assert(MRC.html().includes(msgRoom.name));
-    	chai.assert(MRC.html().includes(msgRoom.date));
+  chai.assert(MRC.html().includes(msgRoom.message));
+  chai.assert(MRC.html().includes(msgRoom.name));
+  chai.assert(MRC.html().includes(msgRoom.date));
   chai.assert(MRC.html().includes(msgRoom1.id));
-	chai.assert(MRC.html().includes(msgRoom1.message));
-    	chai.assert(MRC.html().includes(msgRoom1.name));
-   	chai.assert(MRC.html().includes(msgRoom1.date));
+  chai.assert(MRC.html().includes(msgRoom1.message));
+  chai.assert(MRC.html().includes(msgRoom1.name));
+  chai.assert(MRC.html().includes(msgRoom1.date));	
+  //chai.assert(MRC.text().includes(msgRoom.imgSrc))
+	
   });
 });
