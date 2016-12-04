@@ -11,10 +11,10 @@ import { MessageRooms } from '/imports/api/message/messageRooms.js';
 import { Images } from '/imports/api/image/images.js';
 
 
-//put Controllers in gobal namespace
+//put Controllers in global namespace
 Controllers = Control;
 
-//Model in gobal namespace
+//Model in global namespace
 Models = {
   Images: Images,
   Messages: Messages,
