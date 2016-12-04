@@ -21,8 +21,7 @@ describe('MessageRoomPopout', () => {
       date: '4/9 2017',
     };
 	const msgRooms = [msgRoom, msgRoom1]
-	console.log("hello");
-    	const MRC = shallow(<MessageRoomPopout messageRooms = {msgRooms} />);	
+	const MRC = shallow(<MessageRoomPopout messageRooms = {msgRooms} />);	
     	chai.assert(MRC.html().includes(msgRoom.message));	
    	chai.assert(MRC.html().includes(msgRoom.name));	
     	chai.assert(MRC.html().includes(msgRoom.date));	
