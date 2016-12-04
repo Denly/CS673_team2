@@ -40,6 +40,7 @@ export default class ProfileCard extends Component {
             onChange={this.handleChange}
             onKeyPress={this.handleSubmit}
             className="materialize-textarea">
+            
           </textarea>
         </div>
       </div>
