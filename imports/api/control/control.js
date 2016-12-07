@@ -20,6 +20,7 @@ const _clientSendMessage = function( toUserId, text ){
   }
   //to get [userId1, userId2] in MsgRoom fields
   userIds = [Meteor.userId(), toUserId].sort();
+  //console.log('userIds ', userIds);
   // new msg
   var MsgId =  Messages.insert({
     fromUserId: Meteor.userId(),
@@ -29,16 +30,19 @@ const _clientSendMessage = function( toUserId, text ){
   });
 
   if(!MsgId){
-    console.error('insert msg failed');
+    //console.error('insert msg failed');
     return 0;
   }
   // new msgRoom
-  var msgRoom = MessageRooms.findOne({userId1: userIds[0], userId2: userIds[2]});
+  var msgRoom = MessageRooms.findOne({userId1: userIds[0], userId2: userIds[1]});
+  //console.log('try find msgRoom ',msgRoom);
   if( msgRoom ) {
+    //console.log('MR exist already, just update MR');
       var MsgRoomSuccess = MessageRooms.update(msgRoom._id,
       {$set: {text: text, updatedAt: new Date()}}
     );
   }else{
+    //console.log('new MR insert');
     var MsgRoomSuccess = MessageRooms.insert({
       userId1: userIds[0],
       userId2: userIds[1],
@@ -48,13 +52,13 @@ const _clientSendMessage = function( toUserId, text ){
   }
 
   if(!MsgRoomSuccess){
-    console.error('insert msgRoom failed');
+    //console.error('insert msgRoom failed');
     Messages.remove(MsgId); // roll back, kind of
     return 0;
   }
 
   if(MsgId && MsgRoomSuccess){
-    console.log('Successed, MsgId:',MsgId, ', MsgRoomSuccess:',MsgRoomSuccess )
+    //console.log('Successed, MsgId:',MsgId, ', MsgRoomSuccess:',MsgRoomSuccess )
   }
 }
 
@@ -68,7 +72,13 @@ const _clientSendMessage = function( toUserId, text ){
  * _clientGetLatestMsg("fivE7HyBekduoKe67")
  */
 const _clientGetLatestMsg = function(toUserId){
-  return Messages.findOne({fromUserId: Meteor.userId(), toUserId: toUserId}, {sort: {createdAt: -1}});
+  return Messages.findOne({
+    "$or": [{
+      toUserId:toUserId, fromUserId:Meteor.userId()
+    }, {
+      toUserId:Meteor.userId(), fromUserId:toUserId
+    }]
+  }, {sort: {createdAt: -1}});
 };
 
 /**

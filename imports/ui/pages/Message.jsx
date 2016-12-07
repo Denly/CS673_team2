@@ -20,12 +20,11 @@ class Message extends Component {
   handleSubmit(event) {
     var value = this.state.value.trim()
 
-    if (this.state.value.trim() == ''){
-      console.log('input value cannot be null');
-      return null;
-    }
-
-    if (event.key === 'Enter' || event.key === undefined) {
+    if (event.key === 'Enter' || event.type === "click") {
+      if(value == ''){
+        console.log('input value cannot be null');
+        return 0;
+      }
       this.props.clientSendMessage(this.props.params.id, value);
       this.setState({value: ''});
       setTimeout(this.scrollBottom, 10)
@@ -38,9 +37,6 @@ class Message extends Component {
   }
 
   render() {
-    console.log('this.props.params');
-    console.log(this.props.params);
-    //console.log(this.state.params);
     return (
       <div className="msg_page_container">
 
