@@ -26,7 +26,7 @@ class Message extends Component {
     }
 
     if (event.key === 'Enter' || event.key === undefined) {
-      this.props.clientSendMessage('this.props.params.userId', value);
+      this.props.clientSendMessage(this.props.params.id, value);
       this.setState({value: ''});
       setTimeout(this.scrollBottom, 10)
     }

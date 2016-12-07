@@ -15,9 +15,13 @@ class MessageRoomsPopout extends Component {
   render() {
     return (
       <ul id="slide-out" className="side-nav collection">
-        {this.props.messageRooms.map((o) => (
+        {this.props.noMessageRoom ?
+          <span>No Message Room to show</span>
+          :
+          this.props.messageRooms.map((o) => (
            <MessageRoomCard
             key = {o.id}
+            toUserId = {o.toUserId}
             imgSrc = {o.imgSrc}
             message = {o.message}
             name = {o.name}
@@ -41,12 +45,17 @@ export default createContainer(() => {
     var msg = Control.clientGetLatestMsg(mr.toUserId());
     toUser = Meteor.users.findOne(mr.toUserId())
     name = toUser ? toUser.name : 'name';
+    if(!msg)
+      return {noMessageRoom: true}
+    else
     return {
       id: mr._id,
       imgSrc: '/img_not_find.jpg', // '/' is start with root url, without it, is become http://localhost:3000/Message/<sth>/xx.jpg which is not we want
       message: msg.text,
+      toUserId: mr.toUserId(),
       name: name,
       date: msg.createdAt.toDateString(),
+      noMessageRoom: false
     };
   })}
 
