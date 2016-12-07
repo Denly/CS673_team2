@@ -10,6 +10,7 @@ export default class Discover extends Component {
       {return (
         <DiscoverCard
           key = {user._id}
+          userId = {user._id}
           imgSrc = {user.imgSrc}
           name = {user.name} />
       );}

@@ -40,7 +40,7 @@ class Message extends Component {
   render() {
     console.log('this.props.params');
     console.log(this.props.params);
-    console.log(this.state.params);
+    //console.log(this.state.params);
     return (
       <div className="msg_page_container">
 
@@ -57,7 +57,6 @@ class Message extends Component {
 
       <div className="row msg_input_div">
         <div className="input-field col s10">
-
           <textarea
             value={this.state.value}
             onChange={this.handleChange}
@@ -68,20 +67,24 @@ class Message extends Component {
           <a onClick={this.handleSubmit} className="btn-floating btn-large waves-effect waves-light"><i className="material-icons">send</i></a>
         </div>
       </div>
-      </div>
-    )
-  }
+    </div>
+  )
+}
 }
 
-export default createContainer(() => {
-  //console.log(Messages);
-  //console.log(Messages.find().fetch());
-
+export default createContainer((props) => {
+  var toUserId = props.params.id;
   return {
-    messages: Messages.find().fetch().map((m) => {
+    messages: Messages.find({
+      "$or": [{
+        toUserId:toUserId, fromUserId:Meteor.userId()
+      }, {
+        toUserId:Meteor.userId(), fromUserId:toUserId
+      }]
+    }).fetch().map((m) => {
       m.isOwner = (m.fromUserId == Meteor.userId()) ? true : false;
       return m;
     }),
-    clientSendMessage: Control.clientSendMessage //function(){console.log('yo hii')},
+    clientSendMessage: Control.clientSendMessage
   };
 }, Message);
