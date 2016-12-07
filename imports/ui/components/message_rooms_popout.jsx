@@ -44,9 +44,9 @@ export default createContainer(() => {
 
   return {messageRooms: MessageRooms.find({
     "$or": [{
-      fromUserId:Meteor.userId()
+      userId1:Meteor.userId()
     }, {
-      toUserId:Meteor.userId()
+      userId2:Meteor.userId()
     }]
   }).fetch().map((mr)=>{
     var msg = Control.clientGetLatestMsg(mr.toUserId());
