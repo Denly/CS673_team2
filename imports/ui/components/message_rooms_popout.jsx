@@ -42,12 +42,18 @@ MessageRoomsPopout.propTypes = {
 export default createContainer(() => {
   //subscribe messageRooms here
 
-  return {messageRooms: MessageRooms.find().fetch().map((mr)=>{
+  return {messageRooms: MessageRooms.find({
+    "$or": [{
+      fromUserId:Meteor.userId()
+    }, {
+      toUserId:Meteor.userId()
+    }]
+  }).fetch().map((mr)=>{
     var msg = Control.clientGetLatestMsg(mr.toUserId());
     toUser = Meteor.users.findOne(mr.toUserId())
     name = toUser ? toUser.name : 'name';
     if(!msg){
-      console.error("LatestMsg is losted");
+      console.error("LatestMsg is losted in room " + mr.toUserId());
       msg.text = "LatestMsg is losted";
     }
     return {

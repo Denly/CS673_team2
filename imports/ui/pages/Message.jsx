@@ -81,6 +81,7 @@ export default createContainer((props) => {
       m.isOwner = (m.fromUserId == Meteor.userId()) ? true : false;
       return m;
     }),
+    toUserId:toUserId,
     clientSendMessage: Control.clientSendMessage
   };
 }, Message);

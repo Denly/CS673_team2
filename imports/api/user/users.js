@@ -28,3 +28,12 @@ Meteor.users.allow({
     return true;
   },
 });
+
+Meteor.users._transform = function(user) {
+  // attach methods, instantiate a user class, etc.
+  // return the object
+  user.imageUrl = function(){
+    return 'test';
+  }
+  return user;
+}
