@@ -38,8 +38,8 @@ export default createContainer(() => {
 //subscribe messageRooms here
 
   return {messageRooms: MessageRooms.find().fetch().map((mr)=>{
-    var msg = Control.clientGetLatestMsg(mr.toUserId);
-    toUser = Meteor.users.findOne(mr.toUserId)
+    var msg = Control.clientGetLatestMsg(mr.toUserId());
+    toUser = Meteor.users.findOne(mr.toUserId())
     name = toUser ? toUser.name : 'name';
     return {
       id: mr._id,
