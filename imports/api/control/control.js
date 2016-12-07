@@ -14,10 +14,11 @@ import { Images } from '/imports/api/image/images.js';
  * _clientSendMessage("fivE7HyBekduoKe67", "Hello! How are you today?");
  */
 const _clientSendMessage = function( toUserId, text ){
+  userIds = [Meteor.userId(), toUserId].sort();
   // new msg
   var MsgId =  Messages.insert({
-    fromUserId: Meteor.userId(),
-    toUserId: toUserId,
+    userId1: userIds[0],
+    userId2: userIds[1],
     text: text,
     createdAt: new Date(),
   });
@@ -34,8 +35,8 @@ const _clientSendMessage = function( toUserId, text ){
     );
   }else{
     var MsgRoomSuccess = MessageRooms.insert({
-      fromUserId: Meteor.userId(),
-      toUserId: toUserId,
+      userId1: userIds[0],
+      userId2: userIds[1],
       text: text,
       createdAt: new Date(),
     });
@@ -85,7 +86,7 @@ const _clientEditProfile = function(text){
 // new id 114254839052603
 // daniel's id 699173800246359
 
-/** 
+/**
  * API for inserting a new user to `Users` collection, using facebook id as the argument.
  * @param {string} facebookId - Unique facebook ID of the new user being created.
  * @param {string} nameTemp - Name of the user

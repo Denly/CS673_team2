@@ -9,8 +9,8 @@ export const MessageRooms = new Mongo.Collection('MessageRooms');
 MessageRooms.schema = new SimpleSchema({
   newMessageId: {type: String, regEx: SimpleSchema.RegEx.Id, optional: true},
   NumOfNewMessages: {type: Number, defaultValue: 0},
-  fromUserId: {type: String, regEx: SimpleSchema.RegEx.Id},
-  toUserId: {type: String, regEx: SimpleSchema.RegEx.Id},
+  userId1: {type: String, regEx: SimpleSchema.RegEx.Id}, //smaller id is userId1
+  userId2: {type: String, regEx: SimpleSchema.RegEx.Id},
   createdAt: {type: Date},
   updatedAt:{type: Date},
 });
