@@ -12,8 +12,8 @@ import Document from '../../ui/pages/Document.jsx';
 
 export const renderRoutes = () => (
   <Router history={browserHistory}>
-    <Route path="/" component={AppContainer}>
-      <Route path="/Landing" component={Landing}/>
+    <Route component={AppContainer}>
+      <Route path="/" component={Landing}/>
       <Route path="/Discover" component={Discover}/>
       <Route path="/Message/:id" component={Message}/>
       <Route path="/Profile" component={Profile}/>
