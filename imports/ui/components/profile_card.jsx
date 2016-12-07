@@ -23,7 +23,7 @@ export default class ProfileCard extends Component {
     return (
       <div className="card profile-photo">
         <div className="card-image waves-effect waves-block waves-light">
-          <img class="responsive-img" src= {this.props.imgSrc ? this.props.imgSrc : "img_not_find.jpg"} />
+          <img className="responsive-img" src= {this.props.imgSrc ? this.props.imgSrc : "img_not_find.jpg"} />
         </div>
 
         <div className="card-content profile-name">
