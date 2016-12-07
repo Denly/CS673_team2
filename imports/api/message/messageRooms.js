@@ -13,12 +13,14 @@ _.extend(MessageRoom.prototype, {
   toUserId: function () {
     if(!Meteor.userId)
       console.error("this is a client method only!");
-    return Meteor.userId == this.userId1 ? this.userId2 : this.userId1;
+    if(!this.currentUserIsInMessage())
+      console.error("this msg is not belong to client!");
+    return Meteor.userId() == this.userId1 ? this.userId2 : this.userId1;
   },
   currentUserIsInMessage: function () {
     if(!Meteor.userId)
       console.error("this is a client method only!");
-    return Meteor.userId == this.userId1 || Meteor.userId == this.userId2;
+    return Meteor.userId() == this.userId1 || Meteor.userId() == this.userId2;
   }
 });
 
