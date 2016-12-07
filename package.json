@@ -2,7 +2,9 @@
   "name": "team2",
   "private": true,
   "scripts": {
-    "start": "meteor run"
+    "start": "meteor run",
+    "chimp-watch": "chimp --ddp=http://localhost:3000 --watch --mocha --path=tests",
+    "chimp-test": "chimp --mocha --path=tests"
   },
   "dependencies": {
     "meteor-node-stubs": "~0.2.0",
