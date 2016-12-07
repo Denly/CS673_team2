@@ -16,7 +16,7 @@ MessageRooms.schema = new SimpleSchema({
 });
 
 if(Meteor.server){
-  MessageRooms._ensureIndex({fromUserId: 1, toUserId: -1}, {unique: true});
+  MessageRooms._ensureIndex({userId1: 1, userId2: -1}, {unique: true});
 }
 
 MessageRooms.allow({

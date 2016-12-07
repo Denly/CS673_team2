@@ -14,11 +14,16 @@ import { Images } from '/imports/api/image/images.js';
  * _clientSendMessage("fivE7HyBekduoKe67", "Hello! How are you today?");
  */
 const _clientSendMessage = function( toUserId, text ){
+  if(!toUserId || !Meteor.userId()){
+    console.error("clientSendMessage failed, userId can't be null");
+    return 0;
+  }
+  //to get [userId1, userId2] in MsgRoom fields
   userIds = [Meteor.userId(), toUserId].sort();
   // new msg
   var MsgId =  Messages.insert({
-    userId1: userIds[0],
-    userId2: userIds[1],
+    fromUserId: Meteor.userId(),
+    toUserId: toUserId,
     text: text,
     createdAt: new Date(),
   });
@@ -28,7 +33,7 @@ const _clientSendMessage = function( toUserId, text ){
     return 0;
   }
   // new msgRoom
-  var msgRoom = MessageRooms.findOne({fromUserId: Meteor.userId(), toUserId: toUserId});
+  var msgRoom = MessageRooms.findOne({userId1: userIds[0], userId2: userIds[2]});
   if( msgRoom ) {
       var MsgRoomSuccess = MessageRooms.update(msgRoom._id,
       {$set: {text: text, updatedAt: new Date()}}
