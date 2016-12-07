@@ -12,8 +12,8 @@ renderProfileCard() {
           return (
               <ProfileCard
                 key = {user._id}
-                imgSrc = {user.imgSrc} 
-                name = {user.name} 
+                imgSrc = {user.imgSrc}
+                name = {user.name}
                 intro = {Meteor.user().profile.intro} // needs refactor to use this.props
                 clientEditProfile = {this.props.clientEditProfile}
                 />
@@ -41,7 +41,7 @@ export default createContainer(() => {
       return ({_id: user._id,
       name: user.profile.name,
       intro: user.intro,
-      imgSrc: "https://graph.facebook.com/v2.7/" + user.services.facebook.id + "/picture?fields=picture&height=960&width=960&redirect=true",
+      imgSrc: user.imageUrl(),
     });
     }),
     clientEditProfile: Control.clientEditProfile

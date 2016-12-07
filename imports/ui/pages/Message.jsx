@@ -36,18 +36,24 @@ class Message extends Component {
     objDiv.scrollTop = objDiv.scrollHeight;
   }
 
+  createMessageText(toUserImgUrl){
+    //watch out, here is the trick to pass toUserImgUrl into map
+    return function(m){
+      return (< MessageText {...m}
+      imgSrc = {toUserImgUrl}
+      key = {m._id}
+      />)
+    }
+  }
+
   render() {
     return (
       <div className="msg_page_container">
 
-        <h1><img width="50" height="50" src={'/img_not_find.jpg'}alt="" className="circle"/> Name</h1>
+        <h1><img width="50" height="50" src={this.props.toUserImgUrl}alt="" className="circle"/> Name</h1>
         <ul className="collection" id="msg_context_id">
 
-          {this.props.messages.map((m) => (
-            < MessageText {...m}
-            key = {m._id}
-            />
-        ))}
+          {this.props.messages.map(this.createMessageText(this.props.toUserImgUrl))}
 
       </ul>
 
@@ -81,7 +87,7 @@ export default createContainer((props) => {
       m.isOwner = (m.fromUserId == Meteor.userId()) ? true : false;
       return m;
     }),
-    toUserId:toUserId,
+    toUserImgUrl:Meteor.users.findOne(toUserId).imageUrl(),
     clientSendMessage: Control.clientSendMessage
   };
 }, Message);
