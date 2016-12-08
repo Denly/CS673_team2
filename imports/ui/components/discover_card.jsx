@@ -4,7 +4,7 @@ import { Link } from 'react-router'
 export default class DiscoverCard extends Component {
   render() {
     return (
-      <div className="col l4 m6">
+      <div className="col l4 m6 s12">
         <div className="card profile-photo">
           <div className="card-image waves-effect waves-block waves-light">
             <img className="responsive-img" src= {this.props.imgSrc ? this.props.imgSrc : "img_not_find.jpg"} />
