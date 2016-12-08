@@ -61,7 +61,7 @@ export default createContainer(() => {
       imgSrc: toUser.imageUrl(), // '/img_not_find.jpg', // '/' is start with root url, without it, is become http://localhost:3000/Message/<sth>/xx.jpg which is not we want
       message: msg.text,
       toUserId: mr.toUserId(),
-      name: toUser.name ? toUser.name : 'name',
+      name: toUser.profile.name ? toUser.profile.name: 'Name',
       date: msg ? msg.createdAt.toDateString() : '',
     };
   })}

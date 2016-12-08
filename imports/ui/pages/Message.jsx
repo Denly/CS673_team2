@@ -50,7 +50,7 @@ class Message extends Component {
     return (
       <div className="msg_page_container">
 
-        <h1><img width="50" height="50" src={this.props.toUserImgUrl}alt="" className="circle"/> Name</h1>
+        <h1><img width="50" height="50" src={this.props.toUserImgUrl}alt="" className="circle"/> {this.props.name}</h1>
         <ul className="collection" id="msg_context_id">
 
           {this.props.messages.map(this.createMessageText(this.props.toUserImgUrl))}
@@ -76,6 +76,7 @@ class Message extends Component {
 
 export default createContainer((props) => {
   var toUserId = props.params.id;
+  var toUser = Meteor.users.findOne(toUserId);
   return {
     messages: Messages.find({
       "$or": [{
@@ -87,7 +88,8 @@ export default createContainer((props) => {
       m.isOwner = (m.fromUserId == Meteor.userId()) ? true : false;
       return m;
     }),
-    toUserImgUrl:Meteor.users.findOne(toUserId).imageUrl(),
+    toUserImgUrl: toUser.imageUrl(),
+    name: toUser.profile.name ? toUser.profile.name: 'Name',
     clientSendMessage: Control.clientSendMessage
   };
 }, Message);
