@@ -28,3 +28,12 @@ Meteor.users.allow({
     return true;
   },
 });
+
+Meteor.users._transform = function(user) {
+  // attach methods, instantiate a user class, etc.
+  // return the object
+  user.imageUrl = function(height=960, width=960){
+    return "https://graph.facebook.com/v2.7/" + user.services.facebook.id + "/picture?fields=picture&height="+height+"&width="+width+"&redirect=true";
+  }
+  return user;
+}

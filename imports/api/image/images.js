@@ -1,9 +1,9 @@
 import { Mongo } from 'meteor/mongo';
 
 /**
- * 
+ *
  * Class that takes a document in its constructor and stores it the database as the user's display image.
- * 
+ *
  * @param {file} doc - The document to be stored in the database as the user's display image.
  */
 Image = function (doc) {

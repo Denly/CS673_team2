@@ -5,7 +5,7 @@ export default class MessageRoomCard extends Component {
   render() {
     return (
 
-          <Link to={'/Message/'+'hiii'} className="collection-item avatar waves-effect">
+          <Link to={'/Message/'+this.props.toUserId} className="collection-item avatar waves-effect">
           <img src={this.props.imgSrc} alt="" className="circle"/>
           <span className="title">{this.props.name}</span>
           <p>{this.props.message}<br/>{this.props.date}

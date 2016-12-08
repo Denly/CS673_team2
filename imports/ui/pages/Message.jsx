@@ -20,13 +20,12 @@ class Message extends Component {
   handleSubmit(event) {
     var value = this.state.value.trim()
 
-    if (this.state.value.trim() == ''){
-      console.log('input value cannot be null');
-      return null;
-    }
-
-    if (event.key === 'Enter' || event.key === undefined) {
-      this.props.clientSendMessage('this.props.params.userId', value);
+    if (event.key === 'Enter' || event.type === "click") {
+      if(value == ''){
+        console.log('input value cannot be null');
+        return 0;
+      }
+      this.props.clientSendMessage(this.props.params.id, value);
       this.setState({value: ''});
       setTimeout(this.scrollBottom, 10)
     }
@@ -37,27 +36,29 @@ class Message extends Component {
     objDiv.scrollTop = objDiv.scrollHeight;
   }
 
+  createMessageText(toUserImgUrl){
+    //watch out, here is the trick to pass toUserImgUrl into map
+    return function(m){
+      return (< MessageText {...m}
+      imgSrc = {toUserImgUrl}
+      key = {m._id}
+      />)
+    }
+  }
+
   render() {
-    console.log('this.props.params');
-    console.log(this.props.params);
-    console.log(this.state.params);
     return (
       <div className="msg_page_container">
 
-        <h1><img width="50" height="50" src={'/img_not_find.jpg'}alt="" className="circle"/> Name</h1>
+        <h1><img width="50" height="50" src={this.props.toUserImgUrl}alt="" className="circle"/> {this.props.name}</h1>
         <ul className="collection" id="msg_context_id">
 
-          {this.props.messages.map((m) => (
-            < MessageText {...m}
-            key = {m._id}
-            />
-        ))}
+          {this.props.messages.map(this.createMessageText(this.props.toUserImgUrl))}
 
       </ul>
 
       <div className="row msg_input_div">
         <div className="input-field col s10">
-
           <textarea
             value={this.state.value}
             onChange={this.handleChange}
@@ -68,20 +69,27 @@ class Message extends Component {
           <a onClick={this.handleSubmit} className="btn-floating btn-large waves-effect waves-light"><i className="material-icons">send</i></a>
         </div>
       </div>
-      </div>
-    )
-  }
+    </div>
+  )
+}
 }
 
-export default createContainer(() => {
-  //console.log(Messages);
-  //console.log(Messages.find().fetch());
-
+export default createContainer((props) => {
+  var toUserId = props.params.id;
+  var toUser = Meteor.users.findOne(toUserId);
   return {
-    messages: Messages.find().fetch().map((m) => {
+    messages: Messages.find({
+      "$or": [{
+        toUserId:toUserId, fromUserId:Meteor.userId()
+      }, {
+        toUserId:Meteor.userId(), fromUserId:toUserId
+      }]
+    }).fetch().map((m) => {
       m.isOwner = (m.fromUserId == Meteor.userId()) ? true : false;
       return m;
     }),
-    clientSendMessage: Control.clientSendMessage //function(){console.log('yo hii')},
+    toUserImgUrl: toUser.imageUrl(),
+    name: toUser.profile.name ? toUser.profile.name: 'Name',
+    clientSendMessage: Control.clientSendMessage
   };
 }, Message);
