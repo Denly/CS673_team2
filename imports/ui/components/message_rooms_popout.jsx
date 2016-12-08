@@ -50,7 +50,7 @@ export default createContainer(() => {
     }]
   }).fetch().map((mr)=>{
     var msg = Control.clientGetLatestMsg(mr.toUserId());
-    toUser = Meteor.users.findOne(mr.toUserId())
+    toUser = Meteor.users.findOne(mr.toUserId());
     name = toUser ? toUser.name : 'name';
     if(!msg){
       console.error("LatestMsg is losted in room " + mr.toUserId());
@@ -58,10 +58,10 @@ export default createContainer(() => {
     }
     return {
       id: mr._id,
-      imgSrc: '/img_not_find.jpg', // '/' is start with root url, without it, is become http://localhost:3000/Message/<sth>/xx.jpg which is not we want
+      imgSrc: toUser.imageUrl(), // '/img_not_find.jpg', // '/' is start with root url, without it, is become http://localhost:3000/Message/<sth>/xx.jpg which is not we want
       message: msg.text,
       toUserId: mr.toUserId(),
-      name: name,
+      name: toUser.name ? toUser.name : 'name',
       date: msg ? msg.createdAt.toDateString() : '',
     };
   })}
