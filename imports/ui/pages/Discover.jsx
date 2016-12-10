@@ -4,7 +4,6 @@ import { createContainer } from 'meteor/react-meteor-data';
 
 export default class Discover extends Component {
   renderDiscoverCardList() {
-
     return this.props.users.map((user) => {
       if (user._id != Meteor.user()._id)  //super hacky, needs refactor
       {return (
@@ -12,7 +11,9 @@ export default class Discover extends Component {
           key = {user._id}
           userId = {user._id}
           imgSrc = {user.imgSrc}
-          name = {user.name} />
+          name = {user.name}
+          />
+
       );}
     });
   }
@@ -20,9 +21,12 @@ export default class Discover extends Component {
   render() {
     return (
       <div>
-        <h1>Discover</h1>
+        <h1 class="flow-text">Discover</h1>
         <div className="row">
-          {this.renderDiscoverCardList()}
+          {this.props.loading ? (
+            <div>Loading</div>
+           ) : this.renderDiscoverCardList()
+          }
         </div>
       </div>
     )
@@ -34,11 +38,13 @@ export default class Discover extends Component {
 
 //mapping json array to dom format, put Collection to this.props
 export default createContainer(() => {
-  Meteor.subscribe('discoverUsers');
+  const subscription = Meteor.subscribe('discoverUsers');
 
   return {
+    loading : !subscription.ready(),
     users: Meteor.users.find({}).fetch().map((user) => {
-      return ({_id: user._id,
+      return ({
+        _id: user._id,
         name: user.profile.name,
         imgSrc: "https://graph.facebook.com/v2.7/" + user.services.facebook.id + "/picture?fields=picture&height=960&width=960&redirect=true",
       });
