@@ -3,6 +3,7 @@ import MessageText from '../components/message_text.jsx';
 import { createContainer } from 'meteor/react-meteor-data';
 import { Messages } from '/imports/api/message/messages.js';
 import { Control } from '/imports/api/control/control.js';
+import { MessageRooms } from '/imports/api/message/messageRooms';
 
 class Message extends Component {
   constructor(props){
@@ -25,7 +26,13 @@ class Message extends Component {
         console.log('input value cannot be null');
         return 0;
       }
-      this.props.clientSendMessage(this.props.params.id, value);
+
+      debugger
+      // new msgRoom
+      var msgRoom = MessageRooms.findOne({userId1: Meteor.userId(), userId2: this.props.params.id});
+
+      debugger;
+      this.props.clientSendMessage(this.props.params.id, value, msgRoom);
       this.setState({value: ''});
       setTimeout(this.scrollBottom, 10)
     }
@@ -81,13 +88,15 @@ class Message extends Component {
 
 export default createContainer((props) => {
   var toUserId = props.params.id;
-  var subscription = Meteor.subscribe('singleUser', toUserId);
+  var singleUserSub = Meteor.subscribe('singleUser', toUserId);
   var toUser = Meteor.users.findOne(toUserId);
   Meteor.subscribe('messagesBetweenUsers', toUserId);
+  var messageRoomSub = Meteor.subscribe('messageRoom', toUserId);
 
+  // We have 34 subscriptions here already.  Need to refactor to use aggregate/composition package
   return {
      // If the subscription is not ready yet, return nothing since user not available yet on client. We are ;padoing
-     loading: !subscription.ready(),
+     loading: !singleUserSub.ready() && !messageRoomSub.ready(),
      messages: Messages.find({
       "$or": [{
         toUserId: toUserId,

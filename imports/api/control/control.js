@@ -7,13 +7,14 @@ import { Images } from '/imports/api/image/images.js';
 
 /**
  * API for sending message to another user
- *
+ * At this point the _clientSendMessage works on Message.jsx because
+ * the Message.jsx is subscribing to the messagRoom publication
  * @param {string} toUserId - The unique ID of the recipient of the message
  * @param {string} text - The message to be sent to the recipient
  * @example <caption>Example usage of method _clientSendMessage.</caption>
  * _clientSendMessage("fivE7HyBekduoKe67", "Hello! How are you today?");
  */
-const _clientSendMessage = function( toUserId, text ){
+const _clientSendMessage = function( toUserId, text, msgRoom){
   if(!toUserId || !Meteor.userId()){
     console.error("clientSendMessage failed, userId can't be null");
     return 0;
@@ -23,15 +24,12 @@ const _clientSendMessage = function( toUserId, text ){
   //console.log('userIds ', userIds);
   // new msgd
 
-  debugger
   Meteor.call('createMessage', text, toUserId, function (error, MsgId){
     if (error) {
       console.log(error)
       return;
     }
 
-    // new msgRoom
-    var msgRoom = MessageRooms.findOne({userId1: userIds[0], userId2: userIds[1]});
     //console.log('try find msgRoom ',msgRoom);
     if( msgRoom ) {
       //console.log('MR exist already, just update MR');

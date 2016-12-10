@@ -3,7 +3,7 @@ import { check } from 'meteor/check';
 import { Messages } from '/imports/api/message/messages';
 
 // Create meteor method for creating messages to add security - can do security checking here
-// adds type checking and other validations to gaurantee authentic data
+// adds type checking and other validations to guarantee authentic data
 Meteor.methods({
   createMessage(text, toUserId) {
     check(text, String);
