@@ -27,11 +27,9 @@ class Message extends Component {
         return 0;
       }
 
-      debugger
       // new msgRoom
       var msgRoom = MessageRooms.findOne({userId1: Meteor.userId(), userId2: this.props.params.id});
 
-      debugger;
       this.props.clientSendMessage(this.props.params.id, value, msgRoom);
       this.setState({value: ''});
       setTimeout(this.scrollBottom, 10)
