@@ -14,3 +14,11 @@ Meteor.publish(null, function() {
       "services.facebook.id": 1
   }});
 });
+
+Meteor.publish('singleUser', function(userId) {
+  return Meteor.users.find({_id: userId}, {
+    fields: {
+      profile: 1,
+      "services.facebook.id": 1
+  }});
+});

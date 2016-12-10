@@ -47,7 +47,13 @@ class Message extends Component {
   }
 
   render() {
-    return (
+    // Object destructuring instead of const loading = this.props.loading
+    const { loading } = this.props;
+
+    debugger;
+    return loading ? (
+      <div> Loading </div>
+    ): (
       <div className="msg_page_container">
 
         <h1><img width="50" height="50" src={this.props.toUserImgUrl}alt="" className="circle"/> {this.props.name}</h1>
@@ -76,20 +82,29 @@ class Message extends Component {
 
 export default createContainer((props) => {
   var toUserId = props.params.id;
+  var subscription = Meteor.subscribe('singleUser', toUserId);
   var toUser = Meteor.users.findOne(toUserId);
+  Meteor.subscribe('messagesBetweenUsers', toUserId);
+
   return {
-    messages: Messages.find({
+     // If the subscription is not ready yet, return nothing since user not available yet on client. We are ;padoing
+     loading: !subscription.ready(),
+     messages: Messages.find({
       "$or": [{
-        toUserId:toUserId, fromUserId:Meteor.userId()
+        toUserId: toUserId,
+        fromUserId: Meteor.userId()
       }, {
-        toUserId:Meteor.userId(), fromUserId:toUserId
+        toUserId: Meteor.userId(),
+        fromUserId: toUserId
       }]
     }).fetch().map((m) => {
       m.isOwner = (m.fromUserId == Meteor.userId()) ? true : false;
       return m;
     }),
-    toUserImgUrl: toUser.imageUrl(),
-    name: toUser.profile.name ? toUser.profile.name: 'Name',
+    toUserImgUrl: toUser && toUser.imageUrl(),
+    // If toUser is undefined, return nothing.  If defined try to use name.
+    // fall back to 'Unknown Name'
+    name: toUser && toUser.profile.name || 'Unknown Name',
     clientSendMessage: Control.clientSendMessage
   };
 }, Message);
