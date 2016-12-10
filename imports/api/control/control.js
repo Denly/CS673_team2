@@ -21,24 +21,19 @@ const _clientSendMessage = function( toUserId, text, msgRoom){
   }
   //to get [userId1, userId2] in MsgRoom fields
   userIds = [Meteor.userId(), toUserId].sort();
-  //console.log('userIds ', userIds);
-  // new msgd
-
+ 
   Meteor.call('createMessage', text, toUserId, function (error, MsgId){
     if (error) {
       console.log(error)
       return;
     }
 
-    //console.log('try find msgRoom ',msgRoom);
     if( msgRoom ) {
-      //console.log('MR exist already, just update MR');
-        var MsgRoomSuccess = MessageRooms.update(msgRoom._id,
+      var MsgRoomSuccess = MessageRooms.update(msgRoom._id,
         {$set: {text: text, updatedAt: new Date()}}
       );
     }else{
-      //console.log('new MR insert');
-      var MsgRoomSuccess = MessageRooms.insert({
+       var MsgRoomSuccess = MessageRooms.insert({
         userId1: userIds[0],
         userId2: userIds[1],
         text: text,
@@ -47,14 +42,12 @@ const _clientSendMessage = function( toUserId, text, msgRoom){
     }
 
     if(!MsgRoomSuccess){
-      //console.error('insert msgRoom failed');
-      Messages.remove(MsgId); // roll back, kind of
+       Messages.remove(MsgId); // roll back, kind of
       return 0;
     }
 
     if(MsgId && MsgRoomSuccess){
-      //console.log('Successed, MsgId:',MsgId, ', MsgRoomSuccess:',MsgRoomSuccess )
-    }
+      }
   })
 
 
