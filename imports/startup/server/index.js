@@ -3,6 +3,7 @@ import './accounts-config.js';
 import '/imports/startup/server/fixtures.js';
 import '/imports/api/user/server/publications.js';
 import '/imports/api/message/server/publications.js';
+import '/imports/api/message/server/methods.js';
 import '/imports/api/image/server/publications.js';
 
 import { Control } from '/imports/api/control/control.js';
