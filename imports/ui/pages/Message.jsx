@@ -50,7 +50,6 @@ class Message extends Component {
     // Object destructuring instead of const loading = this.props.loading
     const { loading } = this.props;
 
-    debugger;
     return loading ? (
       <div> Loading </div>
     ): (

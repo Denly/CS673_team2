@@ -16,6 +16,8 @@ Messages.schema = new SimpleSchema({
 
 Messages.allow({
   insert: function (userId, doc) {
+
+    if (!userId) return false;
     // the user must be logged in, and the document must be owned by the user
     return true;
   },
