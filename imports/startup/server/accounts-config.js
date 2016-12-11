@@ -3,7 +3,7 @@ ServiceConfiguration.configurations.update(
       { "service": "facebook" },
       {
         $set: {
-          "appId": "303809510001753",//Corresponding app ID to connect to facebook
+          "appId": "238509353247410",//Corresponding app ID to connect to facebook
           "secret": "be6ca26e6766d7820b889b78d9d4143a"//corresponding secret key to connect to facebook
         }
       },
