@@ -15,6 +15,7 @@ export default class DiscoverCard extends Component {
             <div>
               <span className="card-title grey-text text-darken-4">{this.props.name}</span>
               <Link to={'/Message/'+ this.props.userId} className="collection-item avatar waves-effect">Message</Link>
+              <Link to={'/Profile/'+ this.props.userId} className="collection-item avatar waves-effect">Profile</Link>
             </div>
           </div>
         </div>

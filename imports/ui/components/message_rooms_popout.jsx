@@ -41,7 +41,7 @@ MessageRoomsPopout.propTypes = {
 
 export default createContainer(() => {
   //subscribe messageRooms here
-  Meteor.subscribe('messagesBetweenUsers', toUserId);
+
   return {messageRooms: MessageRooms.find({
     "$or": [{
       userId1:Meteor.userId()
