@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import {emojify} from 'react-emojione';
 
 export default class MessageText extends Component {
   render() {
@@ -7,7 +8,7 @@ export default class MessageText extends Component {
          {this.props.isOwner ? '' : <img src={this.props.imgSrc} alt="" className="circle"/> }
 
         <span className="title">{this.props.date}</span>
-        <p>{this.props.text}</p>
+        <p>{emojify(this.props.text, {output: 'unicode'})}</p>
       </li>
     )
   }
