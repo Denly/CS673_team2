@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Blaze from 'meteor/gadicc:blaze-react-component';
 
 
-const checkString = emojify('MeetCute - A Modern Dating App :man_dancing: :dancer: :couple_with_heart: :revolving_hearts:', {output: 'unicode'});
+const checkString = emojify('MeetCute - A Modern Dating App! :beers: :revolving_hearts:', {output: 'unicode'});
 const options = {
     convertShortnames: true,
     convertUnicode: true,
