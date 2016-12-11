@@ -12,7 +12,7 @@ import { Images } from '/imports/api/image/images.js';
  * @param {string} toUserId - The unique ID of the recipient of the message
  * @param {string} text - The message to be sent to the recipient
  * @example <caption>Example usage of method _clientSendMessage.</caption>
- * _clientSendMessage("fivE7HyBekduoKe67", "Hello! How are you today?");
+ * _clientSendMessage("fivE7HyBekduoKe67", "Hello! How are you today?", msgRoomObject);
  */
 const _clientSendMessage = function( toUserId, text, msgRoom){
   if(!toUserId || !Meteor.userId()){
@@ -21,36 +21,42 @@ const _clientSendMessage = function( toUserId, text, msgRoom){
   }
   //to get [userId1, userId2] in MsgRoom fields
   userIds = [Meteor.userId(), toUserId].sort();
- 
-  Meteor.call('createMessage', text, toUserId, function (error, MsgId){
-    if (error) {
-      console.log(error)
-      return;
-    }
 
-    if( msgRoom ) {
-      var MsgRoomSuccess = MessageRooms.update(msgRoom._id,
-        {$set: {text: text, updatedAt: new Date()}}
-      );
-    }else{
-       var MsgRoomSuccess = MessageRooms.insert({
-        userId1: userIds[0],
-        userId2: userIds[1],
-        text: text,
-        createdAt: new Date(),
+    //console.log('try find msgRoom ',msgRoom);
+    if (msgRoom)
+    {
+        console.log('updating MR!');
+        Meteor.call('updateMessageRoom', msgRoom._id, text, function (err, res){
+        if (err)
+        {
+          console.log('Error updating msgRoom!');
+          console.log(err);
+          return;
+        }
       });
     }
-
-    if(!MsgRoomSuccess){
-       Messages.remove(MsgId); // roll back, kind of
-      return 0;
-    }
-
-    if(MsgId && MsgRoomSuccess){
+    else
+    {
+      console.log('new MR insert!');
+      Meteor.call('createMessageRoom', toUserId, text, function (err, res){
+      if (err)
+      {
+        console.log('Error creating msgRoom!');
+        console.log(err);
+        return;
       }
-  })
+    });
+   }
 
-
+   // Create the message here, so we only do it if MessageRoom succeeds
+Meteor.call('createMessage', text, toUserId, function (error, MsgId){
+  if (error)
+  {
+    console.log(error);
+    return;
+  }
+  console.log('Success!, MsgId:', MsgId);
+})
 }
 
 
