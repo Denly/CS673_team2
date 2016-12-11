@@ -21,7 +21,7 @@ export default class Discover extends Component {
   render() {
     return (
       <div>
-        <h1 class="flow-text">Discover</h1>
+        <h1 className="flow-text">Discover</h1>
         <div className="row">
           {this.props.loading ? (
             <div>Loading</div>

@@ -41,7 +41,7 @@ MessageRoomsPopout.propTypes = {
 
 export default createContainer(() => {
   //subscribe messageRooms here
-
+  Meteor.subscribe('messagesBetweenUsers', toUserId);
   return {messageRooms: MessageRooms.find({
     "$or": [{
       userId1:Meteor.userId()
@@ -54,7 +54,9 @@ export default createContainer(() => {
     name = toUser ? toUser.name : 'name';
     if(!msg){
       console.error("LatestMsg is losted in room " + mr.toUserId());
+      msg = {};
       msg.text = "LatestMsg is losted";
+      msg.date = "NA"
     }
     return {
       id: mr._id,
