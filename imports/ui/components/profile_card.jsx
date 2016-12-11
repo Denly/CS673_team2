@@ -32,7 +32,7 @@ export default class ProfileCard extends Component {
             <span className="card-title grey-text text-darken-4">{this.props.name}</span>
           </div>
         </div>
-        { this.props.id == Meteor.userId() ?
+
         <div className="card-content profile-intro">
           <label>Self Introduction (click below to edit)</label>
 
@@ -44,9 +44,7 @@ export default class ProfileCard extends Component {
             className="materialize-textarea">
           </textarea>
         </div>
-        :
-        <p>not owner{this.props.intro}</p>
-      }
+        
       </div>
     )
   }

@@ -36,8 +36,6 @@ renderProfileCard() {
 //mapping json array to dom format, put Collection to this.props
 export default createContainer((props) => {
   Meteor.subscribe('discoverUsers');
-  console.log('props',props);
-  var id = props.params.id;
 
   return {
     users: Meteor.users.find(id).fetch().map((user) => {
@@ -47,7 +45,6 @@ export default createContainer((props) => {
       imgSrc: user.imageUrl(),
     });
     }),
-    clientEditProfile: Control.clientEditProfile,
-    id:id
+    clientEditProfile: Control.clientEditProfile
   };
 }, Profile);
