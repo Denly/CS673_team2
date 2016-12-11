@@ -36,9 +36,10 @@ renderProfileCard() {
 //mapping json array to dom format, put Collection to this.props
 export default createContainer((props) => {
   Meteor.subscribe('discoverUsers');
+  var id = props.params.id;
 
   return {
-    users: Meteor.users.find({}).fetch().map((user) => {
+    users: Meteor.users.find(id).fetch().map((user) => {
       return ({_id: user._id,
       name: user.profile.name,
       intro: user.intro,
