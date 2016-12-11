@@ -38,7 +38,7 @@ export default createContainer((props) => {
   Meteor.subscribe('discoverUsers');
 
   return {
-    users: Meteor.users.find(id).fetch().map((user) => {
+    users: Meteor.users.find({}).fetch().map((user) => {
       return ({_id: user._id,
       name: user.profile.name,
       intro: user.intro,
