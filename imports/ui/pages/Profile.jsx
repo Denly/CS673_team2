@@ -8,25 +8,22 @@ class Profile extends Component {
 renderProfileCard() {
     return this.props.users.map((user) => {
 
-
-          return (
-              <ProfileCard
-                key = {user._id}
-                imgSrc = {user.imgSrc}
-                name = {user.name}
-                id = {user._id}
-                intro = {Meteor.user().profile.intro} // needs refactor to use this.props
-                clientEditProfile = {this.props.clientEditProfile}
-                />
-            );
+      return (
+        <ProfileCard
+          id ={user._id}
+          key = {user._id}
+          imgSrc = {user.imgSrc}
+          name = {user.name}
+          intro = {user.intro} // needs refactor to use this.props
+          clientEditProfile = {this.props.clientEditProfile}
+        />
+      );
 
     });
   }
-
   render() {
     return (
       <div>
-        <h1>Profile {this.props.id}</h1>
         {this.renderProfileCard()}
       </div>
     )
@@ -37,15 +34,15 @@ renderProfileCard() {
 export default createContainer((props) => {
   Meteor.subscribe('discoverUsers');
   var id = props.params.id;
-
   return {
     users: Meteor.users.find(id).fetch().map((user) => {
       return ({_id: user._id,
       name: user.profile.name,
-      intro: user.intro,
+      intro: user.profile.intro,
       imgSrc: user.imageUrl(),
     });
     }),
-    clientEditProfile: Control.clientEditProfile
+    clientEditProfile: Control.clientEditProfile,
+    id:id
   };
 }, Profile);
