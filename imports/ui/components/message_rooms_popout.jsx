@@ -54,7 +54,9 @@ export default createContainer(() => {
     name = toUser ? toUser.name : 'name';
     if(!msg){
       console.error("LatestMsg is losted in room " + mr.toUserId());
+      msg = {};
       msg.text = "LatestMsg is losted";
+      msg.date = "NA"
     }
     return {
       id: mr._id,

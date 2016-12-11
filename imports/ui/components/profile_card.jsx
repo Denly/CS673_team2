@@ -32,8 +32,10 @@ export default class ProfileCard extends Component {
             <span className="card-title grey-text text-darken-4">{this.props.name}</span>
           </div>
         </div>
+
         <div className="card-content profile-intro">
           <label>Self Introduction (click below to edit)</label>
+
           <textarea
             placeholder="Enter a brief summary of yourself here, press enter to publish"
             value={this.state.value}
@@ -42,6 +44,7 @@ export default class ProfileCard extends Component {
             className="materialize-textarea">
           </textarea>
         </div>
+        
       </div>
     )
   }
