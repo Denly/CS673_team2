@@ -53,7 +53,7 @@ export default class App extends Component {
               <li><a
                 onClick={this.popMessageRoom.bind(this)}
                 >Message</a></li>
-              <li><Link to="/Profile">My Profile</Link></li>
+              <li><Link to={'/Profile/'+Meteor.userId()}>My Profile</Link></li>
             </ul>
 
             <ul className="side-nav" id="mobile-demo">
@@ -61,7 +61,7 @@ export default class App extends Component {
               <li><a
                 onClick={this.popMessageRoom.bind(this)}
                 >Message</a></li>
-              <li><Link to="/Profile">My Profile</Link></li>
+              <li><Link to={'/Profile/'+Meteor.userId()}>My Profile</Link></li>
             </ul>
           </div>
         </nav>

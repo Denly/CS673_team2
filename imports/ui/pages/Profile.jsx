@@ -8,18 +8,17 @@ class Profile extends Component {
 renderProfileCard() {
     return this.props.users.map((user) => {
       return (
-              <ProfileCard
-                id ={user._id}
-                key = {user._id}
-                imgSrc = {user.imgSrc}
-                name = {user.name}
-                intro = {user.intro} // needs refactor to use this.props
-                clientEditProfile = {this.props.clientEditProfile}
-                />
-            );
+        <ProfileCard
+          id ={user._id}
+          key = {user._id}
+          imgSrc = {user.imgSrc}
+          name = {user.name}
+          intro = {user.intro} // needs refactor to use this.props
+          clientEditProfile = {this.props.clientEditProfile}
+        />
+      );
     });
   }
-
   render() {
     return (
       <div>
