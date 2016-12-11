@@ -7,7 +7,9 @@ export default class DiscoverCard extends Component {
       <div className="col l4 m6 s12">
         <div className="card profile-photo">
           <div className="card-image waves-effect waves-block waves-light">
-            <img className="responsive-img" src= {this.props.imgSrc ? this.props.imgSrc : "img_not_find.jpg"} />
+            <Link to={'/Profile/'+ this.props.userId}>
+              <img className="responsive-img" src= {this.props.imgSrc ? this.props.imgSrc : "img_not_find.jpg"} />
+            </Link>
           </div>
 
           <div className="card-content profile-name">
