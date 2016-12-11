@@ -7,6 +7,7 @@ class Profile extends Component {
 
 renderProfileCard() {
     return this.props.users.map((user) => {
+
       return (
         <ProfileCard
           id ={user._id}
@@ -17,6 +18,7 @@ renderProfileCard() {
           clientEditProfile = {this.props.clientEditProfile}
         />
       );
+
     });
   }
   render() {

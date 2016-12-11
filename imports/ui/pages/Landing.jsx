@@ -23,15 +23,17 @@ export default class Landing extends Component {
     AccountsTemplates.logout();
     console.log("log out");
   }
-  
+
 
   render() {
+    console.log(Meteor.user());
     return (
       <div>
         <h1 className="h1Landing">{checkString}</h1>
         <Blaze template="atForm" />
-        {Meteor.user() ? '' :
-        <a className="waves-effect waves-light btn" onClick={this.logout}><i className="material-icons left">power_settings_new</i>Logout</a>
+        {(Meteor.user() === undefined || Meteor.user()) ? <a className="waves-effect waves-light btn" onClick={this.logout}><i className="material-icons left">power_settings_new</i>Logout</a>
+        : ''
+
         }
       </div>
     )
