@@ -46,14 +46,17 @@ if(Meteor.server){
 
 MessageRooms.allow({
   insert: function (userId, doc) {
+    if (!userId) return false;
     // the user must be logged in, and the document must be owned by the user
     return true;
   },
   update: function (userId, doc, fields, modifier) {
+    if (!userId) return false;
     // can only change your own documents
     return true;
   },
   remove: function (userId, doc) {
+    if (!userId) return false;
     // can only remove your own documents
     return false;
   },
