@@ -91,7 +91,7 @@ export default createContainer((props) => {
   Meteor.subscribe('messagesBetweenUsers', toUserId);
   var messageRoomSub = Meteor.subscribe('messageRoom', toUserId);
 
-  // We have 34 subscriptions here already.  Need to refactor to use aggregate/composition package
+  // We have *3* subscriptions here already.  Need to refactor to use aggregate/composition package
   return {
      // If the subscription is not ready yet, return nothing since user not available yet on client. We are ;padoing
      loading: !singleUserSub.ready() && !messageRoomSub.ready(),

@@ -87,11 +87,15 @@ const _clientGetLatestMsg = function(toUserId){
  */
 const _clientEditProfile = function(text){
   user = Meteor.user();
-  userId = Meteor.user()._id;
-  user.profile.intro = text;
-  Meteor.users.update(userId, {
-    $set: {profile: user.profile}
-  });
+
+  Meteor.call('editClientProfile', text, user, function (err, res){
+  if (err)
+  {
+    console.log('Error editing client profile!!!!');
+    console.log(err);
+    return;
+  }
+});
   console.log("intro update successful. New intro: " + text)
 }
 

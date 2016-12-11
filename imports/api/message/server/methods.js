@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 import { Messages } from '/imports/api/message/messages';
 import { MessageRooms } from '/imports/api/message/messageRooms.js';
+import { Users } from '/imports/api/user/users';
 
 // Create meteor method for creating messages to add security - can do security checking here
 // adds type checking and other validations to guarantee authentic data
@@ -61,5 +62,29 @@ Meteor.methods({
      text: text,
      createdAt: new Date(),
    });
+ },
+ editClientProfile(text, user) {
+   check(text, String);
+
+   // Safe way of throwing meteor errors - error type, short error message, detailed error message (optional)
+   var textLength = text.length;
+   if (text.length < 1) {
+     throw new Meteor.Error('invalid-text', 'This message is too short')}
+   if (text.length > 50000) {
+     throw new Meteor.Error('invalid-text', 'This message is too long')}
+
+     console.log('text/text:');
+     console.log(text);
+     console.log('userId1/this.userId:');
+     console.log(this.userId);
+     console.log('user.profile.intro old:');
+     console.log(user.profile.intro);
+
+   user.profile.intro = text;
+   console.log('user.profile.intro new:');
+   console.log(user.profile.intro);
+   return Meteor.users.update(this.userId, {
+       $set: {profile: user.profile}
+     });;
  }
 });
