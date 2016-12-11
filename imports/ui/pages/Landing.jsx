@@ -28,7 +28,7 @@ export default class Landing extends Component {
   render() {
     return (
       <div>
-        <h1>{checkString}</h1>
+        <h1 className="h1Landing">{checkString}</h1>
         <Blaze template="atForm" />
         {Meteor.user() ? '' :
         <a className="waves-effect waves-light btn" onClick={this.logout}><i className="material-icons left">power_settings_new</i>Logout</a>

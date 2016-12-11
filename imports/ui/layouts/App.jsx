@@ -44,7 +44,7 @@ export default class App extends Component {
       <div className="">
         <nav>
           <div className="nav-wrapper">
-            <Link to="/" className="brand-logo"><img src="/logo_s.svg"/>MeetCute</Link>
+            <Link to="/" className="brand-logo"><img src="/logo_s.svg"/><span className="YellowtailLogo">MeetCute&nbsp;</span>;)</Link>
             <a href="#" data-activates="mobile-demo" className="button-collapse"><i className="material-icons">menu</i></a>
             <a href="#" data-activates="slide-out" id="slide-out-trigger"></a>
 

@@ -9,9 +9,19 @@
   margin: 0 10px 0 10px;
 }
 
+.YellowtailLogo {
+    font-family: 'Yellowtail', cursive;
+}
 .brand-logo img{
-  height: 28px;
-  margin-right: 10px;
+    height: 28px;
+    position: relative;
+    margin-right: 10px;
+    top: 3px;
+}
+
+.h1Landing {
+    font-family: 'Yellowtail', cursive;
+    color: #ee6e73;
 }
 
 .msg_page_container {
