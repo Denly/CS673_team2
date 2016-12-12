@@ -42,9 +42,10 @@ Meteor.methods({
    {$set: {text: text, updatedAt: new Date()}});
  },
 
- createMessageRoom(toUserId, text) {
+ createMessageRoom(userIds, text) {
    check(text, String);
-   check(toUserId, String);
+   check(userIds[0], String);
+   check(userIds[1], String);
 
    // Safe way of throwing meteor errors - error type, short error message, detailed error message (optional)
    var textLength = text.length;
@@ -52,13 +53,14 @@ Meteor.methods({
      throw new Meteor.Error('invalid-text', 'This message is too short')}
    if (text.length > 50000) {
      throw new Meteor.Error('invalid-text', 'This message is too long')}
-   console.log('userId2/toUserId:');
-   console.log(toUserId);
+   console.log('userIds:');
+   console.log(userIds);
    console.log('userId1/this.userId:');
    console.log(this.userId);
+
    return MessageRooms.insert({
-     userId1: this.userId,
-     userId2: toUserId,
+     userId1: userIds[0],
+     userId2: userIds[1],
      text: text,
      createdAt: new Date(),
    });
