@@ -38,7 +38,7 @@ const _clientSendMessage = function( toUserId, text, msgRoom){
     else
     {
       console.log('new MR insert!');
-      Meteor.call('createMessageRoom', toUserId, text, function (err, res){
+      Meteor.call('createMessageRoom', userIds, text, function (err, res){
       if (err)
       {
         console.log('Error creating msgRoom!');

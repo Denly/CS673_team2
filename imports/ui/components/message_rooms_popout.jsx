@@ -40,15 +40,16 @@ MessageRoomsPopout.propTypes = {
 }
 
 export default createContainer(() => {
-  //subscribe messageRooms here
-
-  return {messageRooms: MessageRooms.find({
+  //query all the room for the current user
+  var messageRooms = MessageRooms.find({
     "$or": [{
       userId1:Meteor.userId()
     }, {
       userId2:Meteor.userId()
     }]
-  }).fetch().map((mr)=>{
+  }).fetch();
+//add LatestMsg
+  messageRooms = messageRooms.map((mr)=>{
     var msg = Control.clientGetLatestMsg(mr.toUserId());
     toUser = Meteor.users.findOne(mr.toUserId());
     name = toUser ? toUser.name : 'name';
@@ -56,7 +57,7 @@ export default createContainer(() => {
       console.error("LatestMsg is losted in room " + mr.toUserId());
       msg = {};
       msg.text = "LatestMsg is losted";
-      msg.date = "NA"
+      msg.createdAt = '';
     }
     return {
       id: mr._id,
@@ -64,8 +65,10 @@ export default createContainer(() => {
       message: msg.text,
       toUserId: mr.toUserId(),
       name: toUser.profile.name ? toUser.profile.name: 'Name',
-      date: msg ? msg.createdAt.toDateString() : '',
+      date: msg.createdAt ? msg.createdAt.toDateString() : '',
     };
-  })}
+  });
+
+  return {messageRooms: messageRooms};
 
 }, MessageRoomsPopout);
