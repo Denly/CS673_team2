@@ -14,8 +14,11 @@ class MessageRoomsPopout extends Component {
 
   render() {
     return (
+
       <ul id="slide-out" className="side-nav collection">
-        {this.props.messageRooms.length === 0 ?
+        {this.props.loading ? (
+          <div> Loading </div>
+        ) : this.props.messageRooms.length === 0 ?
           <span>No Message Room to show</span>
           :
           this.props.messageRooms.map((o) => (
@@ -27,7 +30,8 @@ class MessageRoomsPopout extends Component {
               name = {o.name}
               date = {o.date}/>
           ))
-        }
+      }
+
       </ul>
     )
   }
@@ -40,28 +44,30 @@ MessageRoomsPopout.propTypes = {
 }
 
 export default createContainer(() => {
-  //subscribe messageRooms here
-
-  return {messageRooms: MessageRooms.find({
+  // Subscriptions are reactive - so the container re-runs when something changes in database
+  const messageRoomsSub = Meteor.subscribe('messageRoomsFromLoggedInUser')
+  return {
+    // If the subscription is not ready yet, return nothing since user not available yet on client. We are ;padoing
+     loading: !messageRoomsSub.ready(),
+    messageRooms: !messageRoomsSub.ready() ? [] : MessageRooms.find({
     "$or": [{
       userId1:Meteor.userId()
     }, {
       userId2:Meteor.userId()
     }]
   }).fetch().map((mr)=>{
+    // This code doesn't wait for the subscription to be ready
+    // but it still works because when the subscription is ready the component re-renders and shows the data
+    // because added the waiting in the control to insert the message
     var msg = Control.clientGetLatestMsg(mr.toUserId());
     toUser = Meteor.users.findOne(mr.toUserId());
-    name = toUser ? toUser.name : 'name';
-    if(!msg){
-      console.error("LatestMsg is losted in room " + mr.toUserId());
-      msg.text = "LatestMsg is losted";
-    }
+    name = toUser ? toUser.name : 'Unknown name';
     return {
       id: mr._id,
-      imgSrc: toUser.imageUrl(), // '/img_not_find.jpg', // '/' is start with root url, without it, is become http://localhost:3000/Message/<sth>/xx.jpg which is not we want
-      message: msg.text,
+      imgSrc: toUser && toUser.imageUrl(), // '/img_not_find.jpg', // '/' is start with root url, without it, is become http://localhost:3000/Message/<sth>/xx.jpg which is not we want
+      message: msg && msg.text,
       toUserId: mr.toUserId(),
-      name: toUser.profile.name ? toUser.profile.name: 'Name',
+      name: toUser && toUser.profile.name || 'Unknown Name',
       date: msg ? msg.createdAt.toDateString() : '',
     };
   })}

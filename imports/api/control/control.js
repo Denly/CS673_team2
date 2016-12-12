@@ -4,6 +4,16 @@ import { Messages } from '/imports/api/message/messages.js';
 import { MessageRooms } from '/imports/api/message/messageRooms.js';
 import { Images } from '/imports/api/image/images.js';
 
+const _createMessage = function(text, toUserId) {
+  Meteor.call('createMessage', text, toUserId, function (error, MsgId){
+    if (error)
+    {
+      console.log(error);
+      return;
+    }
+    console.log('Success!, MsgId:', MsgId);
+  })
+}
 
 /**
  * API for sending message to another user
@@ -33,6 +43,8 @@ const _clientSendMessage = function( toUserId, text, msgRoom){
           console.log(err);
           return;
         }
+
+        _createMessage(text, toUserId)
       });
     }
     else
@@ -45,18 +57,14 @@ const _clientSendMessage = function( toUserId, text, msgRoom){
         console.log(err);
         return;
       }
+
+      _createMessage(text, toUserId)
+
     });
    }
 
    // Create the message here, so we only do it if MessageRoom succeeds
-Meteor.call('createMessage', text, toUserId, function (error, MsgId){
-  if (error)
-  {
-    console.log(error);
-    return;
-  }
-  console.log('Success!, MsgId:', MsgId);
-})
+
 }
 
 
