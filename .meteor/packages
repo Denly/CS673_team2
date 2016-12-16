@@ -19,7 +19,8 @@ ecmascript@0.5.8              # Enable ECMAScript2015+ syntax in app code
 shell-server@0.2.1            # Server-side component of the `meteor shell` command
 
 check
-autopublish             # Publish all data to the clients (for prototyping)
+reywood:publish-composite
+#autopublish             # Publish all data to the clients (for prototyping)
 fourseven:scss
 poetic:materialize-scss
 accounts-facebook
