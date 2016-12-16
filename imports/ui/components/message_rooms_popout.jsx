@@ -44,32 +44,42 @@ MessageRoomsPopout.propTypes = {
 }
 
 export default createContainer(() => {
-  // Subscriptions are reactive - so the container re-runs when something changes in database
   const messageRoomsSub = Meteor.subscribe('messageRoomsFromLoggedInUser')
-  return {
-    // If the subscription is not ready yet, return nothing since user not available yet on client. We are ;padoing
-     loading: !messageRoomsSub.ready(),
-    messageRooms: !messageRoomsSub.ready() ? [] : MessageRooms.find({
+  //query all the room for the current user
+  var messageRooms = MessageRooms.find({
     "$or": [{
       userId1:Meteor.userId()
     }, {
       userId2:Meteor.userId()
     }]
-  }).fetch().map((mr)=>{
-    // This code doesn't wait for the subscription to be ready
-    // but it still works because when the subscription is ready the component re-renders and shows the data
-    // because added the waiting in the control to insert the message
+  }).fetch();
+
+  messageRooms = messageRooms.map((mr)=>{
     var msg = Control.clientGetLatestMsg(mr.toUserId());
-    toUser = Meteor.users.findOne(mr.toUserId());
-    name = toUser ? toUser.name : 'Unknown name';
+    var toUser = Meteor.users.findOne(mr.toUserId());
+
+    if(!msg){
+      console.error("LatestMsg is losted in room " + mr.toUserId());
+      msg = {
+        text: "LatestMsg is losted",
+        createdAt: "Date is losted"
+      };
+    }
+
+    if(!toUser){
+      console.error("toUser is losted in room " + mr.toUserId());
+    }
+
     return {
       id: mr._id,
-      imgSrc: toUser && toUser.imageUrl(), // '/img_not_find.jpg', // '/' is start with root url, without it, is become http://localhost:3000/Message/<sth>/xx.jpg which is not we want
-      message: msg && msg.text,
+      imgSrc: toUser ? toUser.imageUrl() : '/img_not_find.jpg', // '/' is start with root url, without it, is become http://localhost:3000/Message/<sth>/xx.jpg which is not we want
+      message: msg.text,
       toUserId: mr.toUserId(),
-      name: toUser && toUser.profile.name || 'Unknown Name',
-      date: msg ? msg.createdAt.toDateString() : '',
+      name: toUser.profile.name || 'Unknown Name',
+      date: msg.createdAt.toDateString() || msg.createdAt,
     };
-  })}
+  });
+
+  return {messageRooms: messageRooms};
 
 }, MessageRoomsPopout);

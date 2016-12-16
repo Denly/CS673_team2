@@ -16,7 +16,7 @@ export const renderRoutes = () => (
       <Route path="/" component={Landing}/>
       <Route path="/Discover" component={Discover}/>
       <Route path="/Message/:id" component={Message}/>
-      <Route path="/Profile" component={Profile}/>
+      <Route path="/Profile/:id" component={Profile}/>
       <Route path="/Document" component={Document}/>
       <Route path="*" component={NotFoundPage}/>
     </Route>

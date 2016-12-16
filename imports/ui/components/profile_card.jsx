@@ -25,15 +25,17 @@ export default class ProfileCard extends Component {
         <div className="card-image waves-effect waves-block waves-light">
           <img className="responsive-img" src= {this.props.imgSrc ? this.props.imgSrc : "img_not_find.jpg"} />
         </div>
-
         <div className="card-content profile-name">
           <label>Name</label>
           <div>
             <span className="card-title grey-text text-darken-4">{this.props.name}</span>
           </div>
         </div>
+
+        { this.props.id == Meteor.userId() ?
         <div className="card-content profile-intro">
           <label>Self Introduction (click below to edit)</label>
+
           <textarea
             placeholder="Enter a brief summary of yourself here, press enter to publish"
             value={this.state.value}
@@ -42,6 +44,12 @@ export default class ProfileCard extends Component {
             className="materialize-textarea">
           </textarea>
         </div>
+        :
+        <div className="card-content profile-intro">
+          <label>Introduction</label>
+          <div className="materialize-textarea">{this.props.intro}</div>
+        </div>
+      }
       </div>
     )
   }
