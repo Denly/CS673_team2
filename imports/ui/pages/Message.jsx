@@ -89,7 +89,7 @@ export default createContainer((props) => {
   var singleUserSub = Meteor.subscribe('singleUser', toUserId);
   var toUser = Meteor.users.findOne(toUserId);
   Meteor.subscribe('messagesBetweenUsers', toUserId);
-  var messageRoomSub = Meteor.subscribe('messageRoom', toUserId);
+  var messageRoomSub = Meteor.subscribe('messageRoom');
 
   // We have *3* subscriptions here already.  Need to refactor to use aggregate/composition package
   return {
